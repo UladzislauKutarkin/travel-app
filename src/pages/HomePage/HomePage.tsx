@@ -6,7 +6,7 @@ const HomePage = (props: { countries: any[] }) => (
         {
          props.countries.map((country) => {
             console.log(country)
-            return <Card key = {country.id} />;
+            return <Card key = {country.id} {...country} />;
          }
          )
 
