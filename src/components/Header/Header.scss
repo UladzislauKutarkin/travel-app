@@ -1,0 +1,126 @@
+$primary-color: #ffffff;
+$input-color: rgba(255, 255, 255, 0.5);
+$option-color: rgba(184, 183, 183, 0.5);
+.header-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.header-logo{
+  width: 90px;
+  height: 80px;
+}
+video {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.header-main-section-wrapper{
+  display: flex;
+  margin: 2% auto 0 ;
+  width: 800px;
+  justify-content: space-between;
+  color: $primary-color;
+  font-size:25px;
+    input{
+      border: none;
+      outline: none;
+      appearance:none;
+      background: $input-color;
+      margin: 0;
+      font-size:25px;
+    }
+  input::placeholder {
+    text-align: center;
+  }
+}
+.header-search-title{
+  margin-right: 10px;
+}
+
+.option-value {
+  color: $primary-color;
+  background: $option-color;
+  border: none;
+  font-size:25px
+}
+.header-travel-app-description{
+  display: flex;
+  width:800px;
+  height: auto;
+  margin: 2% auto 0;
+  color: $primary-color;
+  text-align: center;
+}
+.header-param{
+  font-size:25px;
+  padding-left: 60px;
+}
+@media screen and (max-width : 1024px) and (min-width: 768px) {
+  .header-logo{
+    width: 50px;
+    height: 40px;
+  }
+  .header-main-section-wrapper{
+    display: flex;
+    width: 500px;
+    font-size:15px;
+    input{
+      font-size:15px;
+    }
+    input::placeholder {
+      text-align: center;
+    }
+  }
+  .option-value {
+    font-size:15px
+  }
+  .header-travel-app-description{
+    width:400px;
+  }
+  .header-param{
+    font-size:15px;
+    padding-left: 30px;
+  }
+  video {
+    width: 100%;
+    height: 20%;
+  }
+}
+@media screen and ( max-width: 767px) and (min-width: 300px) {
+  .header-logo{
+    width: 30px;
+    height: 20px;
+  }
+  .header-main-section-wrapper{
+    display: flex;
+    width: 300px;
+    font-size:10px;
+    input{
+      font-size:10px;
+    }
+    input::placeholder {
+      text-align: center;
+
+    }
+  }
+  .option-value {
+    font-size:10px
+  }
+  .header-travel-app-description{
+    width:300px;
+  }
+  .header-param{
+    font-size:10px;
+    padding-left: 10px;
+  }
+  video {
+    width: 100%;
+    height: 20%;
+  }
+}
+
