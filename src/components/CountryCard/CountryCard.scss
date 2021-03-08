@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+.country-wrapper--description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .country-photo--wrapper{
     margin: 10px auto;
     width: 506px;

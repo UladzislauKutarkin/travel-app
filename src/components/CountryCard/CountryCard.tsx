@@ -4,38 +4,47 @@ import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
 const ukraine = require("../../videos/ukraine.mp4");
 
-
-const dataCarousel = [{
-  imgURL: 'https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg',
-  description: 'Киево-Печерская лавра.Легендарный историко-архитектурный объект города Киев. Дата возведения – 1051 год.'
-},
-{
-  imgURL: 'https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg',
-  description: ' Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.'
-},
-{
-  imgURL: 'https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg',
-  description: ' Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.'
-}]
+const dataCarousel = [
+  {
+    imgURL:
+      "https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg",
+    description:
+      "Киево-Печерская лавра.Легендарный историко-архитектурный объект города Киев. Дата возведения – 1051 год.",
+  },
+  {
+    imgURL: "https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg",
+    description:
+      " Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.",
+  },
+  {
+    imgURL:
+      "https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg",
+    description:
+      " Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.",
+  },
+];
 
 // const renderCard = (dataCarousel) => {
 //   return dataCarousel.map(datas => {return (<Carousel datas={datas} />)} )
 // }
 
-
 const CountryCard = () => {
   return (
     <div className="country-card">
-      <div className="country-photo--wrapper">
-        <img
-          className="country-photo"
-          src="https://www.rae.ma/wp-content/uploads/2019/10/Ukraine-Kiev-vue-place-Independance-1024x742.jpg"
-          alt="Country"
-        />
+      <div className="country-wrapper--description">
+        <div>
+          <div className="country-photo--wrapper">
+            <img
+              className="country-photo"
+              src="https://www.rae.ma/wp-content/uploads/2019/10/Ukraine-Kiev-vue-place-Independance-1024x742.jpg"
+              alt="Country"
+            />
+          </div>
+          <h2>Country Name</h2>
+          <h4>Descroption</h4>
+        </div>
+        {/* <WidgetsBox /> */}
       </div>
-      <h2>Country Name</h2>
-      <h4>Descroption</h4>
-
       <Carousel infiniteLoop={true} width="70%" showStatus={false}>
         <div>
           <img src="https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg" />
@@ -61,8 +70,8 @@ const CountryCard = () => {
           </p>
         </div>
       </Carousel>
-      <div className='country-video'>
-      <ReactWebMediaPlayer title="Video about country" video={ukraine} />
+      <div className="country-video">
+        <ReactWebMediaPlayer title="Video about country" video={ukraine} />
       </div>
     </div>
   );
