@@ -8,11 +8,10 @@ import CountryCard from './components/CountryCard/CountryCard';
 function App() {
   return (
     <div className="App">
-      {/* <Switch>
+      <Switch>
         <Route exact path="/" render={() => <HomePage countries={countries} />} />
         <Route exact path='/1' component={CountryPage} />
-      </Switch> */}
-<CountryCard/>
+      </Switch>
     </div>
   );
 }
