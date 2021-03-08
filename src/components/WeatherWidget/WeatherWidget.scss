@@ -1,0 +1,49 @@
+.weather {
+    width: 60%;
+    color: whitesmoke;
+    margin: 1rem;
+   
+  }
+  
+  .weather_container {
+    background: rgb(33,32,88);
+    background: linear-gradient(100deg, rgba(33,32,88,1) 0%, rgba(2,0,36,1) 21%, rgba(30,29,82,1) 34%, rgba(25,25,71,1) 55%, rgba(2,0,36,1) 89%, rgba(33,32,88,1) 100%); ground: linear-gradient(100deg, rgba(33,32,88,1) 0%, rgba(2,0,36,1) 21%, rgba(38,37,103,1) 34%, rgba(40,39,105,1) 55%, rgba(2,0,36,1) 89%, rgba(33,32,88,1) 100%); 
+    margin:  auto;
+    padding: 1rem;
+  }
+  
+  
+  .city {
+    font-size: 2rem;
+  
+  }
+
+  .weather_params_all {
+      display: flex;
+    
+  }
+
+  .weather_params_right {
+    flex-grow: 1;
+    // padding-bottom: 0.5rem;
+   
+   }
+   .weather_params_left {
+    
+    flex-grow: 1;
+   }
+
+
+  .weather_temp {
+    font-size: 7rem;
+    text-align: right;
+  }
+  
+ 
+
+  .weather_icon {
+    width: 6rem;
+    margin-left: -1em;
+    margin-top: -1em;
+  }
+
