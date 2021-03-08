@@ -1,9 +1,8 @@
 const countries: any[] = [
-    {title: 'Belarus',
+    {country: 'Belarus',
     capital: 'Minsk',
     promo_photo_url: '',
     id: 1
-
 }
 ];
 
