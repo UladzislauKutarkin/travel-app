@@ -4,11 +4,33 @@ import './CurrencyWidget.scss';
 
 class CurrencyWidget extends Component {
     state = {
-        currencies: {
-            usd: 0,
-            euro: 0,
-            current: 0
-        }
+        currencies: [
+            {
+                name: 'usd',
+                flag: 'us',
+                cur: 0,
+                sign: 'USD',
+            },
+            {
+                name: 'euro',
+                flag: 'eu',
+                cur: 0,
+                sign: 'EURO',
+            },
+
+            {
+                name: 'rus',
+                flag: 'ru',
+                cur: 0,
+                sign: 'RUB',
+            },
+            {
+                name: 'current',
+                flag: 'current',
+                cur: 0,
+                sign: 'current',
+            },
+        ]
     }
 
     componentDidMount() {
@@ -17,17 +39,73 @@ class CurrencyWidget extends Component {
 
     setCurrencies = () => {
 
-        getCurrency().then(console.log);
-        
+        getCurrency().then().then(currency => {
+
+            const _cur = currency['data']['rates'];
+
+            // console.log(_cur);
+
+            const _currencies = [
+                {
+                    name: 'usd',
+                    flag: 'us',
+                    cur: _cur.USD.toFixed(2),
+                    sign: 'USD',
+                },
+                {
+                    name: 'euro',
+                    flag: 'eu',
+                    cur: _cur.EUR.toFixed(2),
+                    sign: 'EURO',
+                },
+
+                {
+                    name: 'rus',
+                    flag: 'ru',
+                    cur: _cur.RUB.toFixed(2),
+                    sign: 'RUB',
+                },
+                {
+                    name: 'current',
+                    flag: 'current',
+                    cur: 0,
+                    sign: 'current',
+                },
+            ]
+
+            this.setState({ currencies: _currencies })
+        });
+
+
     }
 
 
     render() {
-      const  {usd, euro, current}  = this.state.currencies;
+       
+        const { currencies } = this.state;
         return (
-            <div>
-                {`${usd}, ${euro}, ${current}`}
+
+            <div className="currency">
+              
+
+                <div className="currency-container">
+                    <div className="title">Currency</div>
+
+                    {
+                    currencies.map(currency => {
+                        return ( <div className="currency-row">
+                        <div className="flag" style={{ backgroundImage: `url(https://www.countryflags.io/${currency.flag}/shiny/64.png)` }}></div>
+                        <div className = "currency-item-box"> {currency.sign} </div>
+                        <div className = "currency-item-box" >{currency.cur}</div>
+                    </div>)
+                    })
+                }
+
+                </div>
+
             </div>
+
+
 
         );
     }
@@ -35,6 +113,6 @@ class CurrencyWidget extends Component {
 }
 export default CurrencyWidget;
 
-//https://openexchangerates.org/
-
 //https://exchangeratesapi.io/
+
+//https://www.countryflags.io/

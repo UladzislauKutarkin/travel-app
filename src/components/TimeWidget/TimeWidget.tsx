@@ -3,8 +3,8 @@ import './TimeWidget.scss';
 
 class TimeWidget extends Component {
 
-    days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    // days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    //days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+     days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     state = {
         day: {
@@ -63,11 +63,15 @@ class TimeWidget extends Component {
         const { day, date, month, year } = this.state.day;
 
         return (
-            <div className = "date-time brd">
-                <div className="date-time-container brd">
-                    <div className="date">{`${this.days[day]}  ${date}-${this.addZero(month)}-${year}`}</div>
-                    <div className="date">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
+            <div className = "date-time ">
+                <div className = "date-time-container">
+                <div className="title">Local Time</div>
+                <div className="date-time-inner ">
+                    <div className="date ">{`${this.days[day]}  ${date}-${this.addZero(month)}-${year}`}</div>
+                    <div className="time ">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
                 </div>
+                </div>
+                 
             </div>
         )
     }

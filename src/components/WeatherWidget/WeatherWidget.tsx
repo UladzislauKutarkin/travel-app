@@ -82,7 +82,7 @@ class WeatherWidget extends Component {
 
         const { city, temp, feels, humidity, wind, weather_icon } = this.state.weather;
         
-        return (<div className="weather brd">
+        return (<div className="weather">
 
             <div className="weather_container">
                 <div className="city">{city}</div>
