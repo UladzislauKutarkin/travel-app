@@ -3,7 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
 import dataCarousel from '../../data/dataSlider'
-const ukraine = require ("../../videos/ukraine.mp4");
+import countryVideo from "../../assets/video/ukraine.mp4";
 
 
 
@@ -42,7 +42,7 @@ const CountryCard = () => {
         {renderSlider(dataCarousel)}
       </Carousel>
       <div className="country-video">
-        <ReactWebMediaPlayer title="Video about country" video={ukraine} />
+        <ReactWebMediaPlayer title="Video about country" video={countryVideo} />
       </div>
     </div>
   );
