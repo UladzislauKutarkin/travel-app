@@ -1,7 +1,13 @@
+import CountryCard from "../../components/CountryCard/CountryCard";
 import WidgetsBox from "../../components/WidgetsBox";
 import countries from '../../data/counties'
 import './CountryPage.scss'
 
+
+const CountryPage = () => (
+    <div className = "country_page">
+        <CountryCard/>
+        <div className = "country_page__container">
 const CountryPage = (props) => {
   
   const country = countries.find((current) => (current.country === props.match.params.country));
