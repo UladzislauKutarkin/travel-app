@@ -4,6 +4,11 @@ import {Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CountryPage from './pages/CountryPage';
 import Header from '../src/components/Header/Header'
+import axios from 'axios';
+// axios.get('http://localhost:3000/')
+// .then((response) => {
+//   console.log(response.data);
+// });
 
 
 function App() {

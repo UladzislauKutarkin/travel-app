@@ -7,7 +7,7 @@ import logo from '../../assets/imgs/logo.png.png'
 export default function Header () {
     return (
         <header className='header-wrapper'>
-            <video autoPlay loop muted preload='true'>
+            <video className='header-video' autoPlay loop muted preload='true'>
                 <source src={videoMountain}/>
             </video>
             <div className='header-main-section-wrapper'>

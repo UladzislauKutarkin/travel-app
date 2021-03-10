@@ -61,7 +61,7 @@ class TimeWidget extends Component {
         
         const { hour, min, sec } = this.state.time;
         const { day, date, month, year } = this.state.day;
-
+        
         return (
             <div className = "date-time ">
                 <div className = "date-time-container">

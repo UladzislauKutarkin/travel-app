@@ -1,6 +1,8 @@
 import './Card.scss';
 import { withRouter } from 'react-router-dom';
 
+
+
 const Card = (props: any) => {
     return (
         <div className="card brd" onClick={() => {

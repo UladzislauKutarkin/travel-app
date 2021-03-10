@@ -11,7 +11,6 @@ const CountryPage = (props) => {
   
     return (<div className="country_page">
        <CountryCard/>
-        <WidgetsBox />
     </div>)
 }
   
