@@ -7,16 +7,39 @@ import { Component } from "react";
 class HomePage extends Component {
 
   state = {
-    
+    countries: [],
+    search: '',
+
+  }
+
+  componentDidMount() {
+    this.setState({ countries: countries });
+  }
+
+  setFilteredCards = () => {
+
+  }
+
+  changeHandler = (e) => {
+
+    this.setState({ search: e.target.value });
+
   }
 
   render() {
+
+    const { countries, search } = this.state;
+
+    const filtered_countries = countries.filter((c) => (String(c['country']).toLowerCase().includes(search.toLowerCase())));
+
+    //  countries.map(c=>(console.log(String(c['country']).toLowerCase().includes(search))));
+
     return (
       <div className="container-fluid">
-        <Header />
+        <Header search={this.state.search} changeHandler={this.changeHandler} />
         <div className="cards-container">
-          {countries.map((country) => {
-            return <Card key={country.id} {...country} />;
+          {filtered_countries.map((country) => {
+            return <Card key={country['id']} {...country} />;
           })}
         </div>
       </div>
