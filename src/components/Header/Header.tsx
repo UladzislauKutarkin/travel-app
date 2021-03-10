@@ -10,7 +10,7 @@ export default function Header (props) {
 //   const   {changeHandler,search } = props;
     return (
         <header className='header-wrapper'>
-            <video autoPlay loop muted preload='true'>
+            <video className='header-video' autoPlay loop muted preload='true'>
                 <source src={videoMountain}/>
             </video>
             <div className='header-main-section-wrapper'>

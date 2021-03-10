@@ -43,7 +43,6 @@ class CurrencyWidget extends Component {
 
             const _cur = currency['data']['rates'];
 
-            // console.log(_cur);
 
             const _currencies = [
                 {
@@ -75,8 +74,6 @@ class CurrencyWidget extends Component {
 
             this.setState({ currencies: _currencies })
         });
-
-
     }
 
 
