@@ -5,7 +5,9 @@ import ReactWebMediaPlayer from "react-web-media-player";
 import dataCarousel from "../../data/dataSlider";
 import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
-import titleVideo from '../../assets/imgs/title-video.png'
+import titleVideo from "../../assets/imgs/title-video.png";
+import CountryMap from "../CountryMap/Map";
+
 const renderSlider = (dataCarousel) => {
   return dataCarousel.map((data) => {
     return <CorouselSlider img={data.imgURL} description={data.description} />;
@@ -45,12 +47,20 @@ const CountryCard = () => {
         </div>
         <WidgetsBox />
       </div>
-      <Carousel infiniteLoop={true} showThumbs={true} width="50%" showStatus={false}>
-         {renderSlider(dataCarousel)} 
+      <Carousel
+        infiniteLoop={true}
+        showThumbs={true}
+        width="50%"
+        showStatus={false}
+      >
+        {renderSlider(dataCarousel)}
       </Carousel>
-      <div className="country-video">
-        <div className='country-description'>Video about country!!!</div>
-        <ReactWebMediaPlayer  video={countryVideo} thumbnail={titleVideo}/>
+      <div className='country-wrapper--video-map'>
+        <div className="country-video">
+          <div className="country-description">Video about country!!!</div>
+          <ReactWebMediaPlayer video={countryVideo} thumbnail={titleVideo} />
+        </div>
+          <CountryMap />
       </div>
     </div>
   );
