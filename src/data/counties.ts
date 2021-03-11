@@ -1,3 +1,4 @@
+
 const countries: any[] = [
     {
         country: 'Belarus',
@@ -30,5 +31,6 @@ const countries: any[] = [
         id: 5
     }
 ];
+
 
 export default countries;

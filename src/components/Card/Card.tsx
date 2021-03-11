@@ -19,8 +19,11 @@ const Card = ({name,capital,match,history,id}: Props):React.ReactElement => {
            history.push(`${match.url}${id}`)
         }
         }>
-             <h4>{name}</h4>
-            <h2>{capital}</h2>
+            <div className='card-photo'></div>
+            {/* style = {{ backgroundImage: `url(${props.promo_photo_url})`} */}
+            <h4 className='card-name'>{name}</h4>
+            <h2 className='card-country'>{capital}</h2>
+
         </div>
     )
 }
