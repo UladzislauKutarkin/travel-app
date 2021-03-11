@@ -1,4 +1,5 @@
 
+
 import axios from 'axios';
 
 const _url = 'https://api.openweathermap.org/data/2.5/weather';
@@ -15,4 +16,5 @@ const getCityWeather = async (city: string, url = _url, appid = _appid) => {
   
   return res;
 };
+
 export default getCityWeather;

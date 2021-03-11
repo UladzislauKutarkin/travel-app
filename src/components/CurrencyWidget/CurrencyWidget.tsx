@@ -1,3 +1,4 @@
+
 import { Component } from "react";
 import getCurrency from './exchangeratesapi'
 import './CurrencyWidget.scss';
@@ -43,7 +44,6 @@ class CurrencyWidget extends Component {
 
             const _cur = currency['data']['rates'];
 
-            // console.log(_cur);
 
             const _currencies = [
                 {
@@ -75,8 +75,6 @@ class CurrencyWidget extends Component {
 
             this.setState({ currencies: _currencies })
         });
-
-
     }
 
 
@@ -114,5 +112,6 @@ class CurrencyWidget extends Component {
 export default CurrencyWidget;
 
 //https://exchangeratesapi.io/
+
 
 //https://www.countryflags.io/

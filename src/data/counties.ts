@@ -1,3 +1,4 @@
+
 const countries: any[] = [
     {country: 'Belarus',
     capital: 'Minsk',

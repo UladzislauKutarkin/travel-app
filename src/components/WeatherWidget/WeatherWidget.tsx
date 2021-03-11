@@ -1,3 +1,4 @@
+
 import './WeatherWidget.scss';
 import { Component } from 'react';
 import getCityWeather from './openweathermap';
@@ -106,6 +107,7 @@ class WeatherWidget extends Component {
     }
 
 }
+
 
 
 

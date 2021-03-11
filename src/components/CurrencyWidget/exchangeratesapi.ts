@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 
 const _url = 'https://api.exchangeratesapi.io/latest';
@@ -14,4 +15,5 @@ const getCurrency = async (url = _url, cur = _cur) => {
 };
 
 export default getCurrency;
+
 

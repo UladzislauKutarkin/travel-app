@@ -1,3 +1,4 @@
+
 import './Card.scss';
 import { withRouter } from 'react-router-dom';
 
@@ -13,4 +14,5 @@ const Card = (props: any) => {
         </div>
     )
 }
+
 export default withRouter(Card);

@@ -2,31 +2,32 @@ import "./CountryCard.scss";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
-import dataCarousel from '../../data/dataSlider'
+
+import dataCarousel from "../../data/dataSlider";
 import countryVideo from "../../assets/video/ukraine.mp4";
-
-
-
+import WidgetsBox from "../WidgetsBox";
+import titleVideo from '../../assets/imgs/title-video.png'
 const renderSlider = (dataCarousel) => {
-  return dataCarousel.map(data => {return (<CorouselSlider img={data.imgURL} description={data.description} />)} )
-}
+  return dataCarousel.map((data) => {
+    return <CorouselSlider img={data.imgURL} description={data.description} />;
+  });
+};
 
-const CorouselSlider = ({img,description}) => {
-  return(
-  <div>
-  <img src={img}/>
-  <p className="legend">
-    {description}
-  </p>
-  </div>)
-}
+const CorouselSlider = ({ img, description }) => {
+  return (
+    <div>
+      <img src={img} />
+      <p className="legend">{description}</p>
+    </div>
+  );
+};
 
 
 const CountryCard = () => {
   return (
     <div className="country-card">
       <div className="country-wrapper--description">
-        <div>
+        <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">
             <img
               className="country-photo"
@@ -34,15 +35,24 @@ const CountryCard = () => {
               alt="Country"
             />
           </div>
-          <h2>Country Name</h2>
-          <h4>Descroption</h4>
+          <div className="country-name">Country Name</div>
+          <div className="country-description">
+            Ukraine - Wikipediaen.wikipedia.org › wiki › Ukraine Including
+            Crimea, Ukraine has an area of 603,628 km2 (233,062 sq mi), and is
+            the second-largest country in Europe after Russia. Excluding Crimea,
+            Ukraine has a population of about 41.5 million, making it the
+            eighth-most populous country in Europe. Its capital and largest city
+            is Kyiv.
+          </div>
         </div>
+        <WidgetsBox />
       </div>
-      <Carousel  infiniteLoop={true} width="70%" showStatus={false}>
-        {renderSlider(dataCarousel)}
+      <Carousel infiniteLoop={true} showThumbs={true} width="50%" showStatus={false}>
+         {renderSlider(dataCarousel)} 
       </Carousel>
       <div className="country-video">
-        <ReactWebMediaPlayer title="Video about country" video={countryVideo} />
+        <div className='country-description'>Video about country!!!</div>
+        <ReactWebMediaPlayer  video={countryVideo} thumbnail={titleVideo}/>
       </div>
     </div>
   );
