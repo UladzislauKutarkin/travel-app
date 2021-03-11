@@ -7,6 +7,11 @@ import SearchBox from '../SearchBox';
 
 export default function Header (props) {
 
+    function renderSearchBox() {
+        if (props.showSearch){
+            return <SearchBox placeholder='Search country' {...props}/>
+        }
+    }
 //   const   {changeHandler,search } = props;
     return (
         <header className='header-wrapper'>
@@ -14,18 +19,14 @@ export default function Header (props) {
                 <source src={videoMountain}/>
             </video>
             <div className='header-main-section-wrapper'>
-                <SearchBox  placeholder='Search country' {...props}/>
-                {/* <div>
-                    <label className='header-search-title' htmlFor='search'>Search</label>
-                    <input  type = "search" id='search' placeholder='Search country' value = {search} onChange = {(e) => (changeHandler(e)) }></input>
-                </div> */}
+                {renderSearchBox()}
                 <img className='header-logo' src={logo} alt="logo"/>
                 <div>
                     <span className='header-search-title'>Language</span>
                     <select className='option-value'>
                         <option className='option-value' value='En' defaultValue='En'>En</option>
                         <option className='option-value' value='Ru' >Ru</option>
-                        <option className='option-value' value='Bel'>Bel</option>
+                        <option className='option-value' value='Bel'>Fr</option>
                     </select>
                 </div>
 
