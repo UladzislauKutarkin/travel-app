@@ -16,17 +16,17 @@ export default function Footer() {
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
-                    <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
+                    <Link to={{ pathname: "https://github.com/AlekseyGrimm" }} target="_blank">
                         <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
-                    <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
+                    <Link to={{ pathname: "https://github.com/yauheni-beiduk" }} target="_blank">
                         <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
-                    <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
+                    <Link to={{ pathname: "https://github.com/ya6" }} target="_blank">
                         <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />

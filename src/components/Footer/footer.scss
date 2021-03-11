@@ -1,5 +1,5 @@
 .wrapper-footer{
-    background: #1a0c02e0;
+    background: #6e6c7585;
     display: flex;
     flex-grow: 1;
     height: 80px;
@@ -22,6 +22,27 @@
     width: 50px;
 }
 
-.img-Schoo{
+.img-School{
+    width: 100px;
+    display: flex;
+    margin-left: 35em;
+    margin-top: 20px;
+}
+
+.img-Git:hover{
+    cursor: pointer;
     width: 50px;
+    transform: scale(1.2);
+    transition: 0.3s;
+    background-color: #ffffffb2;
+    box-shadow: 1px 1px 10px 5px #ffffffb2, 0px 5px 4px 0 #fafafabe;
+    border-radius: 50%;
+}
+
+.img-School:hover{
+    box-shadow: 0px 0px 10px 5px #ffffffb2, 0px 0px 0px 0px #fafafabe;
+    transform: scale(1.2);
+    transition: 0.3s;
+    border-radius: 10%;
+    background-color: #ffffffb2;
 }
