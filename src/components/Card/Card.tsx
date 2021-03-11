@@ -7,8 +7,9 @@ const Card = (props: any) => {
            props.history.push(`${props.match.url}${props.country}`)
         }
         }>  
-            <div className="card-photo"></div>
-            <h4 className='card-name'>Card</h4>
+            <div className='card-photo' style = {{ backgroundImage: `url(${props.promo_photo_url})`}}></div>
+            {/* <img className='card-photo' src='' /> */}
+            <h4 className='card-name'>{props.capital}</h4>
             <h2 className='card-country'> {props.country}</h2>
         </div>
     )
