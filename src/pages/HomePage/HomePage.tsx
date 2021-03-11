@@ -24,8 +24,10 @@ interface Country {
 class HomePage extends Component {
   state = {
     countries: [],
-    search: "",
-  };
+    search: '',
+    showSearch: true
+  }
+
 
   componentDidMount() {
     this.setState({ countries: countries });
@@ -48,7 +50,7 @@ class HomePage extends Component {
 
     return (
       <div className="container-fluid">
-        <Header search={this.state.search} changeHandler={this.changeHandler} />
+        <Header showSearch={this.state.showSearch} search={this.state.search} changeHandler={this.changeHandler} />
         <div className="cards-container">
           {countries.length &&
             countries.map(({ id, name, capital,imageUrl }) => {
