@@ -7,7 +7,6 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin: 1rem 2rem;
-    height: 100vh;
 }
 .country-wrapper-desriptions {
  flex-grow: 7; 
@@ -53,13 +52,11 @@ color: #FFFFFF;
     text-align: center !important;
 }
 
-
-
 .country-video {
    display: flex;
    flex-direction: column;
+   width: 50%;
 }
-
 
 .country-descriptions {
     position: absolute;
@@ -76,3 +73,7 @@ color: #FFFFFF;
     background-size: cover;
 }
 
+.country-wrapper--video-map{
+    display: flex;
+    flex-direction: row;
+}
