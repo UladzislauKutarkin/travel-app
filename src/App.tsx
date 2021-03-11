@@ -3,6 +3,7 @@ import './App.scss';
 import {Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CountryPage from './pages/CountryPage';
+import Footer from "./components/Footer/footer";
 
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path='/:country' component = {CountryPage} />
       </Switch>
+      <Footer />
     </div>
+
   );
 }
 

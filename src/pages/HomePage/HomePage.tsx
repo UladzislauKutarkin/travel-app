@@ -42,8 +42,7 @@ class HomePage extends Component {
           {filtered_countries.map((country) => {
             return <Card key={country['id']} {...country} />;
           })}
-        </div>
-        <Footer />
+        </div>        
       </div>
     );
   }

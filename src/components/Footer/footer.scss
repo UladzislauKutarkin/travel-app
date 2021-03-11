@@ -2,20 +2,26 @@
     background: #1a0c02e0;
     display: flex;
     flex-grow: 1;
+    height: 80px;
 }
 
 .footer-git{
     display: flex;
-    margin: 0 auto;
-    width: 400px;
-    justify-content: space-between;
+    margin-left: 3%;
+    margin-block: auto;
 }
 .footer-year{
-    font-weight: 900;
-    color: #F8F5F0;
+    color: #07f83fe6;
     font-size: 40px;
+    align-self: center;
+    display: flex;
+    margin-left: 31%;
 }
 
-.footer-img{
-    margin: auto;
+.img-Git{
+    width: 50px;
+}
+
+.img-Schoo{
+    width: 50px;
 }

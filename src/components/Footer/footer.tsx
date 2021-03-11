@@ -12,32 +12,32 @@ export default function Footer() {
             <footer className='wrapper-footer'>
                 <div className='footer-git'>
                     <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
-                        <img className='footer-img'
+                        <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
                     <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
-                        <img className='footer-img'
+                        <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
                     <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
-                        <img className='footer-img'
+                        <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
                     </Link>
                     <Link to={{ pathname: "https://github.com/UladzislauKutarkin" }} target="_blank">
-                        <img className='footer-img'
+                        <img className='img-Git'
                             alt='GitHubLogo'
                             src={githubIcon} />
-                    </Link>
-                    <span className='footer-year'><strong>2021</strong></span>
-                    <Link to={{ pathname: "https://rs.school/js/" }} target="_blank">
-                        <img className='footer-img'
-                            alt='RsSchoolLogo'
-                            src={rsSchoolLogo} />
                     </Link>
                 </div>
+                <span className='footer-year'><strong>2021</strong></span>
+                <Link to={{ pathname: "https://rs.school/js/" }} target="_blank">
+                    <img className='img-School'
+                        alt='RsSchoolLogo'
+                        src={rsSchoolLogo} />
+                </Link>
             </footer>
         </BrowserRouter>
     )
