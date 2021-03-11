@@ -1,3 +1,4 @@
+
 import Card from "../../components/Card";
 import "./HomePage.scss";
 import countries from "../../data/counties";

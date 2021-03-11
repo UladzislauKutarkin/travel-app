@@ -1,5 +1,9 @@
 .country-card{
-    width: 100%;
+    width: 100% ;
+    margin: 0 auto;
+    border: 0 solid #e2e7ea;
+    box-sizing: border-box;
+    flex-grow: 7;
 }
 
 .country-wrapper--description {
@@ -18,6 +22,7 @@
     height: 280px;
     border: 2px solid;
 }
+
 
 .country-photo {
     width: 506px;
@@ -44,9 +49,11 @@ color: #FFFFFF;
 }
 
 .carousel.carousel-slider {
+
     margin: 0 auto !important;
     overflow: hidden;
 }
+
 
 
 .thumbs-wrapper.axis-vertical{
@@ -75,4 +82,5 @@ color: #FFFFFF;
 .slider-wrapper{
     background-size: cover;
 }
+
 

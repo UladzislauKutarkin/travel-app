@@ -9,6 +9,7 @@ $option-color: rgba(184, 183, 183, 0.5);
   width: 90px;
   height: 80px;
 }
+
 .header-video {
   object-fit: cover;
   position: absolute;
@@ -38,11 +39,6 @@ $option-color: rgba(184, 183, 183, 0.5);
     text-align: center;
   }
 }
-
-// go in SearchBox
-// .header-search-title{
-//   margin-right: 10px;
-// }
 
 .option-value {
   color: $primary-color;

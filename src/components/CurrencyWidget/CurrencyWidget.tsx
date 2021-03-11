@@ -1,3 +1,4 @@
+
 import { Component } from "react";
 import getCurrency from './exchangeratesapi'
 import './CurrencyWidget.scss';
@@ -111,5 +112,6 @@ class CurrencyWidget extends Component {
 export default CurrencyWidget;
 
 //https://exchangeratesapi.io/
+
 
 //https://www.countryflags.io/

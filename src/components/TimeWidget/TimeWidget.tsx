@@ -1,3 +1,4 @@
+
 import { Component } from "react";
 import './TimeWidget.scss';
 
@@ -79,3 +80,4 @@ class TimeWidget extends Component {
 };
 
 export default TimeWidget;
+

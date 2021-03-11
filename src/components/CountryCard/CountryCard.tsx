@@ -2,6 +2,7 @@ import "./CountryCard.scss";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
+
 import dataCarousel from "../../data/dataSlider";
 import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
@@ -20,6 +21,7 @@ const CorouselSlider = ({ img, description }) => {
     </div>
   );
 };
+
 
 const CountryCard = () => {
   return (

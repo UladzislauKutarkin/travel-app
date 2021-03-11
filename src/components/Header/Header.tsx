@@ -15,10 +15,6 @@ export default function Header (props) {
             </video>
             <div className='header-main-section-wrapper'>
                 <SearchBox  placeholder='Search country' {...props}/>
-                {/* <div>
-                    <label className='header-search-title' htmlFor='search'>Search</label>
-                    <input  type = "search" id='search' placeholder='Search country' value = {search} onChange = {(e) => (changeHandler(e)) }></input>
-                </div> */}
                 <img className='header-logo' src={logo} alt="logo"/>
                 <div>
                     <span className='header-search-title'>Language</span>
