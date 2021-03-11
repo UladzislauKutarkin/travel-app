@@ -2,6 +2,7 @@ import Card from "../../components/Card";
 import "./HomePage.scss";
 import countries from "../../data/counties";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/footer";
 import { Component } from "react";
 
 class HomePage extends Component {
@@ -42,6 +43,7 @@ class HomePage extends Component {
             return <Card key={country['id']} {...country} />;
           })}
         </div>
+        <Footer />
       </div>
     );
   }
