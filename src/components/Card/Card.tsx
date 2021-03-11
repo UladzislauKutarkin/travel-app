@@ -1,17 +1,26 @@
 import './Card.scss';
 import { withRouter } from 'react-router-dom';
+import React from 'react';
 
+interface Props {
+    match: {
+      params: { id: string},
+      url: string,
+    },
+    name: string,
+    capital: string,
+    history: { push: (url: string)=> void},
+    id: string,
+}
 
-
-const Card = (props: any) => {
+const Card = ({name,capital,match,history,id}: Props):React.ReactElement => {
     return (
         <div className="card brd" onClick={() => {
-           props.history.push(`${props.match.url}${props.country}`)
+           history.push(`${match.url}${id}`)
         }
         }>
-            <h4>Card</h4>
-            <h2> {props.country}</h2>
-
+             <h4>{name}</h4>
+            <h2>{capital}</h2>
         </div>
     )
 }

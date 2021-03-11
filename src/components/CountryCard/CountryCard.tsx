@@ -2,28 +2,50 @@ import "./CountryCard.scss";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
-import dataCarousel from "../../data/dataSlider";
 import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
 import titleVideo from "../../assets/imgs/title-video.png";
 import CountryMap from "../CountryMap/Map";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import { withRouter } from 'react-router-dom';
+import renderSlider from './Slider/Slider'
+import dataCarousel from "../../data/dataSlider";
 
-const renderSlider = (dataCarousel) => {
-  return dataCarousel.map((data) => {
-    return <CorouselSlider img={data.imgURL} description={data.description} />;
-  });
-};
 
-const CorouselSlider = ({ img, description }) => {
-  return (
-    <div>
-      <img src={img} />
-      <p className="legend">{description}</p>
-    </div>
-  );
-};
+interface Country{
+  id: string,
+  capital: string,
+  description: string,
+  name: string,
+  capitalLocation: {
+  coordinates: string[],
+  type: string
+  },
+  imageUrl: string,
+  videoUrl:string,
+  currency: string,
+  ISOCode: string,
+  places: []
+  }
 
-const CountryCard = () => {
+interface Props {
+  match?: {
+    params: { id: string}
+  },
+}
+
+const CountryCard = ({match}:Props):React.ReactElement => {
+  
+  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:''});
+
+  useEffect(()=> {
+    axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
+    .then(({data})=>setCountry(data)
+    ) 
+  },[])
+  console.log(match)
+
   return (
     <div className="country-card">
       <div className="country-wrapper--description">
@@ -31,18 +53,13 @@ const CountryCard = () => {
           <div className="country-photo--wrapper">
             <img
               className="country-photo"
-              src="https://www.rae.ma/wp-content/uploads/2019/10/Ukraine-Kiev-vue-place-Independance-1024x742.jpg"
+              src={country.imageUrl}
               alt="Country"
             />
           </div>
-          <div className="country-name">Country Name</div>
+          <div className="country-name">{country.name}</div>
           <div className="country-description">
-            Ukraine - Wikipediaen.wikipedia.org › wiki › Ukraine Including
-            Crimea, Ukraine has an area of 603,628 km2 (233,062 sq mi), and is
-            the second-largest country in Europe after Russia. Excluding Crimea,
-            Ukraine has a population of about 41.5 million, making it the
-            eighth-most populous country in Europe. Its capital and largest city
-            is Kyiv.
+            {country.description}
           </div>
         </div>
         <WidgetsBox />
@@ -66,4 +83,5 @@ const CountryCard = () => {
   );
 };
 
-export default CountryCard;
+
+export default withRouter(CountryCard);
