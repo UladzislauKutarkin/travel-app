@@ -55,17 +55,10 @@ class CurrencyWidget extends Component<CurrencyType> {
 
     setCurrencies = (  ISOCode: string, out_currency: string ) => {
 
-        console.log('out_currency ',out_currency);
-        
-
         getCurrency(out_currency).then(currencies => {
-console.log(currencies);
 
             const _cur = currencies['data']['conversion_rates'];
-            console.log('cur_',_cur);
-            console.log('--', out_currency);
-            
-            
+                 
             const _currencies = [
                 {
                     name: 'usd',
@@ -97,7 +90,6 @@ console.log(currencies);
             this.setState({ currencies: _currencies })
         });
     }
-
 
     render() {
        
@@ -135,41 +127,4 @@ export default CurrencyWidget;
 
 //https://www.countryflags.io/
 
-
-
-//ISOcode
-//Эмикаты AE
-
-// канада CA
-//Англ  GB
-//Авcтралия AU,
-
-//Германия DE,
-
-//Беларусь BY
-
-
-// валюты 
-
-//США USD
-//Украина UAH
-
-//Эмикаты AED
-
-//Канада CAD
-//Англ  EUR
-//Франция EUR
-//Авcтралия AUD,
-
-//Германия EUR
-
-//Беларусь BYN
-
-
-//https://free.currencyconverterapi.com/
-
-//https://github.com/topics/currency-api
-
-//https://www.exchangerate-api.com/
-
-//https://v6.exchangerate-api.com/v6/081b46e91a52545e83bc2960/pair/USD/BYN
+//https://v6.exchangerate-api.com/v6/081b46e91a52545e83bc2960/

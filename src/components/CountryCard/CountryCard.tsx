@@ -45,7 +45,7 @@ const CountryCard = ({match}:Props):React.ReactElement => {
     ) 
   },[])
   //console.log(match);
- console.log(country);
+ // console.log(country['capital']);
      const { capital, ISOCode, currency, name} = country;
 
    
