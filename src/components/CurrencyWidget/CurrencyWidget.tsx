@@ -1,8 +1,15 @@
 import { Component } from "react";
-import getCurrency from './exchangeratesapi'
+import getCurrency from './exchangerates-api'
 import './CurrencyWidget.scss';
 
-class CurrencyWidget extends Component {
+
+interface CurrencyType {
+    ISOCode: string, 
+    currency: string, 
+    name: string
+  
+}
+class CurrencyWidget extends Component<CurrencyType> {
     state = {
         currencies: [
             {
@@ -34,48 +41,55 @@ class CurrencyWidget extends Component {
     }
 
     componentDidMount() {
-        this.setCurrencies();
+       
     }
 
-    setCurrencies = () => {
+    componentDidUpdate(prevProps) {
 
-        getCurrency().then().then(currency => {
+        if (prevProps !== this.props) {
 
-            const _cur = currency['data']['rates'];
+            const {ISOCode, currency} = this.props;
+              this.setCurrencies( ISOCode, currency) ;
+        }
+    }
 
+    setCurrencies = (  ISOCode: string, out_currency: string ) => {
 
+        getCurrency(out_currency).then(currencies => {
+
+            const _cur = currencies['data']['conversion_rates'];
+                 
             const _currencies = [
                 {
                     name: 'usd',
                     flag: 'us',
-                    cur: _cur.USD.toFixed(2),
+                    cur: _cur.USD.toFixed(3),
                     sign: 'USD',
                 },
                 {
                     name: 'euro',
                     flag: 'eu',
-                    cur: _cur.EUR.toFixed(2),
+                    cur: _cur.EUR.toFixed(3),
                     sign: 'EURO',
                 },
 
                 {
                     name: 'rus',
                     flag: 'ru',
-                    cur: _cur.RUB.toFixed(2),
+                    cur: _cur.RUB.toFixed(3),
                     sign: 'RUB',
                 },
                 {
                     name: 'current',
-                    flag: 'current',
-                    cur: 0,
-                    sign: 'current',
+                    flag: ISOCode.toLocaleLowerCase(),
+                    cur:  _cur[out_currency].toFixed(3),
+                    sign: out_currency,
                 },
-            ]
+            ];
 
             this.setState({ currencies: _currencies })
         });
     }
-
 
     render() {
        
@@ -103,7 +117,6 @@ class CurrencyWidget extends Component {
             </div>
 
 
-
         );
     }
 
@@ -113,3 +126,5 @@ export default CurrencyWidget;
 //https://exchangeratesapi.io/
 
 //https://www.countryflags.io/
+
+//https://v6.exchangerate-api.com/v6/081b46e91a52545e83bc2960/
