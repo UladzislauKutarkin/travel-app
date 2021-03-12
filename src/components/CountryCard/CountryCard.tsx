@@ -52,24 +52,20 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
   const[country,setCountry] = useState({slider:[] ,name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
-  const [isLoading,setIsLoading] = useState(false);
 
 
-  useEffect(()=> {
-    axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
-    .then(({data})=>setCountry(data)
-    ) 
-  },[])
 
-  useEffect(()=> {
-    setIsLoading(true)
-  },[country])
+  const fetchCountries = async () => {
+    const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
+    setCountry(response.data)
+  }
+  useEffect( () => { fetchCountries() },[])
+
+ 
 
 
   console.log(country)
 
-
-if (isLoading===true) {
   return (
     <div className="country-card">
       <div className="country-wrapper--description">
@@ -89,7 +85,7 @@ if (isLoading===true) {
         <WidgetsBox />
       </div>
 
-      <ImageGallery   items={country.slider}/>
+      <ImageGallery items={country.slider}/>
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
@@ -99,10 +95,9 @@ if (isLoading===true) {
       </div>
     </div>
   );
-} else {
-  return (<></>)
-}
 
 }
+
+
 
 export default withRouter(CountryCard);
