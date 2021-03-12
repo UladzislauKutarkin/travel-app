@@ -8,6 +8,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
+import Header from "../Header/Header";
 
 interface Country{
   id: string,
@@ -52,6 +53,7 @@ const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currenc
 
   return (
     <div className="country-card">
+      <Header/>
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">
