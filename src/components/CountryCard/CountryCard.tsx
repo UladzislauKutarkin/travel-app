@@ -1,17 +1,13 @@
 import "./CountryCard.scss";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
-import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
 import titleVideo from "../../assets/imgs/title-video.png";
-import CountryMap from "../CountryMap/Map";
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
-import renderSlider from './Slider/Slider'
-import dataCarousel from "../../data/dataSlider";
-
+import "react-image-gallery/styles/css/image-gallery.css"
+import ImageGallery from 'react-image-gallery';
 
 interface Country{
   id: string,
@@ -26,29 +22,33 @@ interface Country{
   videoUrl:string,
   currency: string,
   ISOCode: string,
-  places: []
+  places: [],
+  slider:[]
   }
-
 interface Props {
   match?: {
     params: { id: string}
   },
+  coordinates: string[]
 }
 
 const CountryCard = ({match}:Props):React.ReactElement => {
-  
-  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:'',capital:'', ISOCode: '', currency: '' });
 
-  useEffect(()=> {
-    axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
-    .then(({data})=>setCountry(data)
-    ) 
-  },[])
-  //console.log(match);
- // console.log(country['capital']);
-     const { capital, ISOCode, currency, name} = country;
+const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 
-   
+
+
+  const fetchCountries = async () => {
+    const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
+    setCountry(response.data)
+  }
+  useEffect( () => { fetchCountries() },[])
+
+  const { capital, ISOCode, currency, name} = country;
+
+
+  console.log(country)
+
 
   return (
     <div className="country-card">
@@ -68,24 +68,19 @@ const CountryCard = ({match}:Props):React.ReactElement => {
         </div>
         <WidgetsBox capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
-      <Carousel
-        infiniteLoop={true}
-        showThumbs={true}
-        width="50%"
-        showStatus={false}
-      >
-        {renderSlider(dataCarousel)}
-      </Carousel>
+
+      <ImageGallery items={country.slider}/>
+
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={countryVideo} thumbnail={titleVideo} />
+          <ReactWebMediaPlayer video={country.videoUrl} thumbnail={titleVideo} />
         </div>
-          <CountryMap />
       </div>
     </div>
   );
-};
+
+}
 
 
 export default withRouter(CountryCard);

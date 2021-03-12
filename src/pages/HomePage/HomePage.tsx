@@ -42,6 +42,8 @@ class HomePage extends Component {
     this.setState({ search: e.target.value });
   };
 
+
+
   render() {
     //usememo
     const { countries, search } = this.state;
