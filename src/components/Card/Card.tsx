@@ -11,16 +11,17 @@ interface Props {
     capital: string,
     history: { push: (url: string)=> void},
     id: string,
+    imageUrl: string,
 }
 
-const Card = ({name,capital,match,history,id}: Props):React.ReactElement => {
+const Card = ({name,capital,match,history,id, imageUrl}: Props):React.ReactElement => {
     return (
         <div className="card brd" onClick={() => {
            history.push(`${match.url}${id}`)
         }
         }>
-            <div className='card-photo'></div>
-            {/* style = {{ backgroundImage: `url(${props.promo_photo_url})`} */}
+            
+            <img className="card-photo" src={imageUrl} alt="card-photo" />           
             <h4 className='card-name'>{name}</h4>
             <h2 className='card-country'>{capital}</h2>
 

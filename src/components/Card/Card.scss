@@ -9,6 +9,9 @@
 .card:hover {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 #fffefe7a, 0 2px 4px 0 #fcfcfc7e;
+  background-color: #595e59;
+  transition: 1s;
+  transform: scale(1.1);
 }
 
 .card-photo {

@@ -32,7 +32,7 @@ export default function Footer() {
                             src={githubIcon} />
                     </Link>
                 </div>
-                <span className='footer-year'><strong>2021</strong></span>
+                <span className='footer-year'><strong>&copy; 2021</strong></span>
                 <Link to={{ pathname: "https://rs.school/js/" }} target="_blank">
                     <img className='img-School'
                         alt='RsSchoolLogo'
