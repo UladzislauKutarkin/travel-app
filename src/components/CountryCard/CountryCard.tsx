@@ -37,14 +37,18 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
   
-  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:''});
+  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:'',capital:'', ISOCode: '', currency: '' });
 
   useEffect(()=> {
     axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
     .then(({data})=>setCountry(data)
     ) 
   },[])
-  console.log(match)
+  //console.log(match);
+ // console.log(country['capital']);
+     const { capital, ISOCode, currency, name} = country;
+
+   
 
   return (
     <div className="country-card">
@@ -62,7 +66,7 @@ const CountryCard = ({match}:Props):React.ReactElement => {
             {country.description}
           </div>
         </div>
-        <WidgetsBox />
+        <WidgetsBox capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
       <Carousel
         infiniteLoop={true}
