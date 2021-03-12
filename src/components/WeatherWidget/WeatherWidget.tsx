@@ -1,25 +1,33 @@
 import './WeatherWidget.scss';
 import { Component } from 'react';
 import getCityWeather from './openweathermap';
+interface WeatherTypes {
+    capital: string;
 
-class WeatherWidget extends Component {
+}
+
+
+class WeatherWidget extends Component<WeatherTypes> {
     state = {
         weather: {
-            city: 'City',
+            city: 'Minsk',
             temp: 0,
             feels: 0,
             humidity: 0,
             wind: 0,
             weather_icon: '',
-        }  
+        }
+    }
+
+    componentDidMount() {
+
     }
 
 
+    setWeather = (city) => {
 
-    setWeather = () => {
+        getCityWeather(city).then(weather => {
 
-        getCityWeather('Minsk').then(weather => {
-           
             const _weather = {
                 city: weather['data']['name'],
                 temp: (
@@ -39,49 +47,33 @@ class WeatherWidget extends Component {
         );
     }
 
-    addZero = (n) => {
-        return (parseInt(n, 10) < 10 ? '0' : '') + n;
-    }
 
-    getTime = () => {
+    componentDidUpdate(prevProps) {
 
-        const today = new Date();
+        if (prevProps !== this.props) {
 
-        const _time = {
+            this.setWeather(this.props.capital);
 
-            hour: today.getHours(),
-            min: today.getMinutes(),
-            sec: today.getSeconds(),
+            const _weather = {
+                city: this.props.capital,
+                temp: 0,
+                feels: 0,
+                humidity: 0,
+                wind: 0,
+                weather_icon: '',
+            };
+
+            this.setState({ weather: _weather });
+
         }
 
-        this.setState({ time: _time })
-    }
-
-
-    getDay = () => {
-        const today = new Date();
-        const _day = {
-            day: today.getDay(),
-            date: today.getDate(),
-            month: today.getMonth() + 1,
-            year: today.getFullYear() - 2000,
-        }
-        this.setState({ day: _day })
-    }
-
-    componentWillMount() {
-        this.setWeather();
-        this.getDay();
-    }
-
-    componentDidUpdate() {
-        setTimeout(this.getTime, 1000);
     }
 
     render() {
 
+
         const { city, temp, feels, humidity, wind, weather_icon } = this.state.weather;
-        
+
         return (<div className="weather">
 
             <div className="weather_container">
@@ -106,7 +98,6 @@ class WeatherWidget extends Component {
     }
 
 }
-
 
 
 export default WeatherWidget;

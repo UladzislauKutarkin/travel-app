@@ -1,8 +1,6 @@
 import "./CountryCard.scss";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import ReactWebMediaPlayer from "react-web-media-player";
-import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
 import titleVideo from "../../assets/imgs/title-video.png";
 import React, { useEffect, useState } from "react";
@@ -11,22 +9,6 @@ import { withRouter } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 
-const images = [
-  {
-    original:  "https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg",
-    thumbnail:  "https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg",
-    description: "Киево-Печерская лавра.Легендарный историко-архитектурный объект города Киев. Дата возведения – 1051 год.",
-  },
-  {
-    original: "https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg",
-    thumbnail: "https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg",
-    description: " Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.",
-  },
-  {
-    original: "https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg",
-    thumbnail: "https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg",
-  },
-];
 interface Country{
   id: string,
   capital: string,
@@ -51,7 +33,8 @@ interface Props {
 }
 
 const CountryCard = ({match}:Props):React.ReactElement => {
-  const[country,setCountry] = useState({slider:[] ,name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+
+const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 
 
 
@@ -61,10 +44,11 @@ const CountryCard = ({match}:Props):React.ReactElement => {
   }
   useEffect( () => { fetchCountries() },[])
 
- 
+  const { capital, ISOCode, currency, name} = country;
 
 
   console.log(country)
+
 
   return (
     <div className="country-card">
@@ -82,7 +66,7 @@ const CountryCard = ({match}:Props):React.ReactElement => {
             {country.description}
           </div>
         </div>
-        <WidgetsBox />
+        <WidgetsBox capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
       <ImageGallery items={country.slider}/>
@@ -97,7 +81,6 @@ const CountryCard = ({match}:Props):React.ReactElement => {
   );
 
 }
-
 
 
 export default withRouter(CountryCard);

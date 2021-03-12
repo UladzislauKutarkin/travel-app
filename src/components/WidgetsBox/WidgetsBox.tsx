@@ -3,10 +3,16 @@ import TimeWidget from "../TimeWidget";
 import WeatherWidget from "../WeatherWidget";
 import "./WidgetsBox.scss";
 
-const WidgetsBox = () => {
+const WidgetsBox = (props:any) => {
+
+
+   const { capital, ISOCode, currency, name}:any = props;
+ 
+   
+
   return (
     <div className="widget_box">
-      <WeatherWidget />
+      <WeatherWidget capital = {capital} />
       <TimeWidget />
       <CurrencyWidget />
     </div>
