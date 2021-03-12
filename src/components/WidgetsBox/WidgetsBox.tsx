@@ -13,8 +13,8 @@ const WidgetsBox = (props:any) => {
   return (
     <div className="widget_box">
       <WeatherWidget capital = {capital} />
-      <TimeWidget />
-      <CurrencyWidget />
+      <TimeWidget  />
+      <CurrencyWidget  ISOCode = {ISOCode}  currency = {currency} name = {name}/>
     </div>
   );
 };
