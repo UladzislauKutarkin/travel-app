@@ -5,14 +5,28 @@ import ReactWebMediaPlayer from "react-web-media-player";
 import countryVideo from "../../assets/video/ukraine.mp4";
 import WidgetsBox from "../WidgetsBox";
 import titleVideo from "../../assets/imgs/title-video.png";
-import CountryMap from "../CountryMap/Map";
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
-import renderSlider from './Slider/Slider'
-import dataCarousel from "../../data/dataSlider";
+import "react-image-gallery/styles/css/image-gallery.css"
+import ImageGallery from 'react-image-gallery';
 
-
+const images = [
+  {
+    original:  "https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg",
+    thumbnail:  "https://wikiway.com/upload/hl-photo/00c/452/kievo-pecherskaya-lavra_130.jpg",
+    description: "Киево-Печерская лавра.Легендарный историко-архитектурный объект города Киев. Дата возведения – 1051 год.",
+  },
+  {
+    original: "https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg",
+    thumbnail: "https://wikiway.com/upload/hl-photo/b06/378/bukovel_124.jpg",
+    description: " Буковель – один из самых известных украинских горнолыжных курортов. Он расположен на высоте более 900 метров рядом с селом Поляница Ивано-Франковской области.",
+  },
+  {
+    original: "https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg",
+    thumbnail: "https://wikiway.com/upload/hl-photo/e92/be1/chernobylskaya-aes_75.jpg",
+  },
+];
 interface Country{
   id: string,
   capital: string,
@@ -26,26 +40,36 @@ interface Country{
   videoUrl:string,
   currency: string,
   ISOCode: string,
-  places: []
+  places: [],
+  slider:[]
   }
-
 interface Props {
   match?: {
     params: { id: string}
   },
+  coordinates: string[]
 }
 
 const CountryCard = ({match}:Props):React.ReactElement => {
-  
-  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:''});
+  const[country,setCountry] = useState({slider:[] ,name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+  const [isLoading,setIsLoading] = useState(false);
+
 
   useEffect(()=> {
     axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
     .then(({data})=>setCountry(data)
     ) 
   },[])
-  console.log(match)
 
+  useEffect(()=> {
+    setIsLoading(true)
+  },[country])
+
+
+  console.log(country)
+
+
+if (isLoading===true) {
   return (
     <div className="country-card">
       <div className="country-wrapper--description">
@@ -64,24 +88,21 @@ const CountryCard = ({match}:Props):React.ReactElement => {
         </div>
         <WidgetsBox />
       </div>
-      <Carousel
-        infiniteLoop={true}
-        showThumbs={true}
-        width="50%"
-        showStatus={false}
-      >
-        {renderSlider(dataCarousel)}
-      </Carousel>
+
+      <ImageGallery   items={country.slider}/>
+
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={countryVideo} thumbnail={titleVideo} />
+          <ReactWebMediaPlayer video={country.videoUrl} thumbnail={titleVideo} />
         </div>
-          <CountryMap />
       </div>
     </div>
   );
-};
+} else {
+  return (<></>)
+}
 
+}
 
 export default withRouter(CountryCard);

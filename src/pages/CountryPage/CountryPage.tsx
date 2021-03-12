@@ -1,5 +1,4 @@
 import CountryCard from "../../components/CountryCard/CountryCard";
-import WidgetsBox from "../../components/WidgetsBox";
 import countries from '../../data/counties'
 import './CountryPage.scss'
 
