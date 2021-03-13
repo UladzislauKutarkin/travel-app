@@ -4,26 +4,30 @@ import React from 'react';
 
 interface Props {
     match: {
-      params: { id: string},
-      url: string,
+        params: { id: string },
+        url: string,
     },
     name: string,
     capital: string,
-    history: { push: (url: string)=> void},
+    history: { push: (url: string) => void },
     id: string,
     imageUrl: string,
 }
 
-const Card = ({name,capital,match,history,id, imageUrl}: Props):React.ReactElement => {
+const Card = ({ name, capital, match, history, id, imageUrl }: Props): React.ReactElement => {
     return (
-        <div className="card brd" onClick={() => {
-           history.push(`${match.url}${id}`)
+        <div className="card" onClick={() => {
+            history.push(`${match.url}${id}`)
         }
         }>
-            
-            <img className="card-photo" src={imageUrl} alt="card-photo" />           
-            <h4 className='card-name'>{name}</h4>
-            <h2 className='card-country'>{capital}</h2>
+            <div className="background-image" style={{ backgroundImage: `url(${imageUrl})` }} ></div>
+            <div className="content">
+                <h2 className="title">{name} </h2>
+                <span className="subtitle">{capital}</span>
+            </div>
+
+
+
 
         </div>
     )
