@@ -10,6 +10,7 @@ import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
 import ReactPlayer from 'react-player'
+import CountryMap from "../CountryMap/CountryMap";
 
 interface Country{
   id: string,
@@ -77,10 +78,11 @@ const[country,setCountry] = useState({  ['videoUrl '] : '',slider:[] ,capital:''
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
-          <div className="country-description">Video about country!!!</div>
           <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
+        
       </div>
+      <CountryMap  coordinates={country.capitalLocation.coordinates}/>
     </div>
   );
 
