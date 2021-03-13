@@ -64,6 +64,7 @@ const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currenc
             />
           </div>
           <div className="country-name">{country.name}</div>
+          <div className="country-capital">{country.capital}</div>
           <div className="country-description">
             {country.description}
           </div>
