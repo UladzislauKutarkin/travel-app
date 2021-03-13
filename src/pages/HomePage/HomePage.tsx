@@ -25,18 +25,23 @@ class HomePage extends Component {
   state = {
     countries: [],
     search: '',
-    showSearch: true
+    showSearch: true,
+    language: 'en'
   }
 
 
   componentDidMount() {
     this.setState({ countries: countries });
     axios
-      .get<Country[]>("http://localhost:3000/countries")
+      .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
   }
 
-  setFilteredCards = () => { };
+  setLng = (event) => {
+    this.setState({
+      language: event.target.value
+    })
+  };
 
   changeHandler = (e) => {
     this.setState({ search: e.target.value });
@@ -55,11 +60,16 @@ class HomePage extends Component {
 
     return (
       <div className="container-fluid">
-        <Header showSearch={this.state.showSearch} search={this.state.search} changeHandler={this.changeHandler} />
+        <Header
+            setLng={this.setLng}
+            showSearch={this.state.showSearch}
+            search={this.state.search}
+            changeHandler={this.changeHandler} />
         <div className="cards-container">
           {countries.length && filtered_countries.map(({ id, name, capital, imageUrl }) => {
 
               return <Card key={id}
+                           lang={this.state.language}
                 id={id}
                 name={name}
                 capital={capital}

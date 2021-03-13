@@ -12,6 +12,7 @@ interface Props {
     history: { push: (url: string) => void },
     id: string,
     imageUrl: string,
+    lang:string
 }
 
 const Card = ({ name, capital, match, history, id, imageUrl }: Props): React.ReactElement => {

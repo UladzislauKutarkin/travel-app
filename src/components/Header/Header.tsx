@@ -23,10 +23,10 @@ export default function Header (props) {
                 <img className='header-logo' src={logo} alt="logo"/>
                 <div>
                     <span className='header-search-title'>Language</span>
-                    <select className='option-value'>
-                        <option className='option-value' value='En' defaultValue='En'>En</option>
-                        <option className='option-value' value='Ru' >Ru</option>
-                        <option className='option-value' value='Bel'>Fr</option>
+                    <select   onChange = {props.setFr} className='option-value'>
+                        <option className='option-value' value='en'>En</option>
+                        <option className='option-value' value='ru'>Ru</option>
+                        <option className='option-value' value='fr'>Fr</option>
                     </select>
                 </div>
 

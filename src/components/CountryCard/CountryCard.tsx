@@ -36,14 +36,22 @@ interface Props {
 const CountryCard = ({match}:Props):React.ReactElement => {
 
 const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const [lang, setLang]= useState(''|| 'en')
 
+  const setFr= (event)=>{
+    setLang(event.target.value)
+    console.log(event.target.value)
+    console.log(lang)
+  }
 
 
   const fetchCountries = async () => {
-    const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
+    const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
-  useEffect( () => { fetchCountries() },[])
+  useEffect( () => { fetchCountries()
+
+  },[lang])
 
   const { capital, ISOCode, currency, name} = country;
 
@@ -53,7 +61,7 @@ const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currenc
 
   return (
     <div className="country-card">
-      <Header/>
+      <Header  setFr={setFr}/>
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">
