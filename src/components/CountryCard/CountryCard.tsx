@@ -11,6 +11,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom';
 import renderSlider from './Slider/Slider'
 import dataCarousel from "../../data/dataSlider";
+import ReactPlayer from "react-player"
 
 
 interface Country{
@@ -19,11 +20,11 @@ interface Country{
   description: string,
   name: string,
   capitalLocation: {
-  coordinates: string[],
+  coordinates: Array<string>,
   type: string
   },
   imageUrl: string,
-  videoUrl:string,
+  ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
   places: []
@@ -31,20 +32,27 @@ interface Country{
 
 interface Props {
   match?: {
-    params: { id: string}
+    params: { id: string }
   },
 }
 
 const CountryCard = ({match}:Props):React.ReactElement => {
-  
-  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',videoUrl:''});
 
+  const[country,setCountry] = useState({name: '', description: '',imageUrl: '',capitalLocation:{
+      coordinates: []
+    },
+    ['videoUrl '] : ''
+  });
+  const [video, setVideo] = useState('')
   useEffect(()=> {
     axios.get(`http://localhost:3000/countries/${match?.params?.id}`)
     .then(({data})=>setCountry(data)
-    ) 
+    )
   },[])
   console.log(match)
+  console.log(country.capitalLocation.coordinates)
+  console.log(country["videoUrl "])
+
 
   return (
     <div className="country-card">
@@ -75,9 +83,12 @@ const CountryCard = ({match}:Props):React.ReactElement => {
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={countryVideo} thumbnail={titleVideo} />
+          <ReactPlayer
+            url={country["videoUrl "]}
+          />
+{/*          <ReactWebMediaPlayer video={countryVideo} thumbnail={titleVideo} />*/}
         </div>
-          <CountryMap />
+          <CountryMap lat={country.capitalLocation.coordinates[0]} lng={country.capitalLocation.coordinates[1]}/>
       </div>
     </div>
   );
