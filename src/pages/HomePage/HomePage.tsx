@@ -57,8 +57,8 @@ class HomePage extends Component {
       <div className="container-fluid">
         <Header showSearch={this.state.showSearch} search={this.state.search} changeHandler={this.changeHandler} />
         <div className="cards-container">
-          {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl }) => {
+          {countries.length && filtered_countries.map(({ id, name, capital, imageUrl }) => {
+
               return <Card key={id}
                 id={id}
                 name={name}
