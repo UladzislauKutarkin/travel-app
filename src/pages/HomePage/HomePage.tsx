@@ -36,7 +36,7 @@ class HomePage extends Component {
       .then(({ data }) => this.setState({ countries: data }));
   }
 
-  setFilteredCards = () => {};
+  setFilteredCards = () => { };
 
   changeHandler = (e) => {
     this.setState({ search: e.target.value });
@@ -45,23 +45,26 @@ class HomePage extends Component {
 
 
   render() {
-    //usememo
+
     const { countries, search } = this.state;
-    const filtered_countries = countries.filter((c) => (String(c['country']).toLowerCase().includes(search.toLowerCase())));
-     countries.map(c=>(console.log(String(c['country']).toLowerCase().includes(search))));
+
+    const filtered_countries = countries.filter(c => {
+      return String(c['name']).toLowerCase().includes(search.toLowerCase()) || String(c['capital']).toLowerCase().includes(search.toLowerCase())
+    });
+
 
     return (
       <div className="container-fluid">
         <Header showSearch={this.state.showSearch} search={this.state.search} changeHandler={this.changeHandler} />
         <div className="cards-container">
           {countries.length &&
-            countries.map(({ id, name, capital,imageUrl }) => {
+            filtered_countries.map(({ id, name, capital, imageUrl }) => {
               return <Card key={id}
-               id={id}
+                id={id}
                 name={name}
-                 capital={capital}
-                 imageUrl={imageUrl}
-                 />;
+                capital={capital}
+                imageUrl={imageUrl}
+              />;
             })}
         </div>
       </div>
