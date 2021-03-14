@@ -33,7 +33,7 @@ class CurrencyWidget extends Component<CurrencyType> {
             },
             {
                 name: 'current',
-                flag: 'current',
+                flag: 'by',
                 cur: 0,
                 sign: 'current',
             },
@@ -106,24 +106,20 @@ class CurrencyWidget extends Component<CurrencyType> {
 
             <div className="currency">
               
-
                 <div className="currency-container">
                     <div className="title">Currency</div>
 
                     {
                     currencies.map(currency => {
                      
-
                         if (currency.name === 'current' && currency.sign ===  "USD" && this.props.currency === 'USD') {return <div></div>}
                        
-                            return ( <div className="currency-row">
-                            <div className="flag" style={{ backgroundImage: `url(https://www.countryflags.io/${currency.flag}/shiny/64.png)` }}></div>
+                            return ( <div  key = {currency.name} className="currency-row">
+                            <div  className="flag" style={{ backgroundImage: `url(https://www.countryflags.io/${currency.flag}/shiny/64.png)` }}></div>
                             <div className = "currency-item-box"> {currency.sign} </div>
                             <div className = "currency-item-box" >{currency.cur}</div>
                         </div>)
-                            
-                      
-                      
+                                            
                     })
                 }
 
