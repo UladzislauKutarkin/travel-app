@@ -1,10 +1,28 @@
 import { Component } from "react";
 import './TimeWidget.scss';
 
-class TimeWidget extends Component {
+interface TimeType {
+    ISOCode: string, 
+    
+}
+
+class TimeWidget extends Component<TimeType> {
 
     //days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-     days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+    time_offsets = {
+        US: -5,
+        UA: 2,
+        AE: 4,
+        FR: 1,
+        CA: -5,
+        GB: 0,
+        AU: 11,
+        DE: 1,
+        BY: 3
+    };
+
 
     state = {
         day: {
@@ -18,26 +36,38 @@ class TimeWidget extends Component {
             hour: 0,
             min: 0,
             sec: 0,
-        }
+        },
+        
+        timezone:0, 
     }
 
     componentDidMount() {
         this.getDay();
-        this.getTime();
+        this.getTime(this.state.timezone);
     }
 
-    componentDidUpdate() {
-        setTimeout(this.getTime, 1000);
+      componentDidUpdate(prevProps) {
+
+        if(prevProps !== this.props) {
+
+         this.setState({timezone: this.time_offsets[this.props.ISOCode]})   
+
+        }
+        setTimeout((tz = this.state.timezone) => (this.getTime(tz)), 1000);
     }
 
     addZero = (n) => {
         return (parseInt(n, 10) < 10 ? '0' : '') + n;
     }
 
-    getTime = () => {
-        const today = new Date();
+    getTime = (tz) => {
+    
+        const now = new Date().getTime();
+        const corr_time = Number(now+(tz*60*60*1000));
+        const today =  new Date(corr_time);
+    
         const _time = {
-            hour: today.getHours(),
+            hour: today.getUTCHours(),
             min: today.getMinutes(),
             sec: today.getSeconds(),
         }
@@ -50,28 +80,28 @@ class TimeWidget extends Component {
         const _day = {
             day: today.getDay(),
             date: today.getDate(),
-            month: today.getMonth() + 1,
-            year: today.getFullYear() - 2000,
+            month: today.getMonth(),
+            year: today.getFullYear(),
         }
 
         this.setState({ day: _day });
     }
 
     render() {
-        
+      
         const { hour, min, sec } = this.state.time;
         const { day, date, month, year } = this.state.day;
-        
+
         return (
-            <div className = "date-time ">
-                <div className = "date-time-container">
-                <div className="title">Local Time</div>
-                <div className="date-time-inner ">
-                    <div className="date ">{`${this.days[day]}  ${date}-${this.addZero(month)}-${year}`}</div>
-                    <div className="time ">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
+            <div className="date-time ">
+                <div className="date-time-container">
+                    <div className="title">Local Time</div>
+                    <div className="date-time-inner">
+                        <div className="date">{`${this.days[day]} ${date} ${this.months[month]} ${year}`}</div>
+                        <div className="time">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
+                    </div>
                 </div>
-                </div>
-                 
+
             </div>
         )
     }

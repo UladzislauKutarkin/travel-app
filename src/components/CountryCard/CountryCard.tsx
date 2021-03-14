@@ -9,6 +9,9 @@ import { withRouter } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
+import CountryMap from "../CountryMap";
+
+import ReactPlayer from 'react-player'
 
 interface Country{
   id: string,
@@ -16,16 +19,16 @@ interface Country{
   description: string,
   name: string,
   capitalLocation: {
-  coordinates: string[],
+  coordinates: Array<string>,
   type: string
   },
   imageUrl: string,
-  videoUrl:string,
+  ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
-  places: [],
-  slider:[]
+  places: []
   }
+
 interface Props {
   match?: {
     params: { id: string}
@@ -53,11 +56,7 @@ const [lang, setLang]= useState(''|| 'en')
 
   },[lang])
 
-  const { capital, ISOCode, currency, name} = country;
-
-
-  console.log(country)
-
+  const { capital, ISOCode, currency, name, capitalLocation } = country;
 
   return (
     <div className="country-card">
@@ -84,10 +83,13 @@ const [lang, setLang]= useState(''|| 'en')
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
-          <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={country.videoUrl} thumbnail={titleVideo} />
+          <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
+        
       </div>
+
+      <CountryMap coordinates = {capitalLocation.coordinates} />
+
     </div>
   );
 

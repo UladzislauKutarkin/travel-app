@@ -22,7 +22,7 @@ export default function Header (props) {
                 {renderSearchBox()}
                 <img className='header-logo' src={logo} alt="logo"/>
                 <div>
-                    <span className='header-search-title'>Language</span>
+                    <span className=''>Language</span>
                     <select   onChange = {props.setFr} className='option-value'>
                         <option className='option-value' value='en'>En</option>
                         <option className='option-value' value='ru'>Ru</option>
