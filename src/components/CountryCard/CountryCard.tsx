@@ -9,8 +9,9 @@ import { withRouter } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
+import CountryMap from "../CountryMap";
+
 import ReactPlayer from 'react-player'
-import CountryMap from "../CountryMap/_CountryMap";
 
 interface Country{
   id: string,
@@ -37,7 +38,8 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
 
-const[country,setCountry] = useState({  ['videoUrl '] : '',slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '',
+ videoUrl:'',capitalLocation:{ coordinates:[]}});
 
 
 
@@ -47,11 +49,7 @@ const[country,setCountry] = useState({  ['videoUrl '] : '',slider:[] ,capital:''
   }
   useEffect( () => { fetchCountries() },[])
 
-  const { capital, ISOCode, currency, name} = country;
-
-
-  console.log(country)
-
+  const { capital, ISOCode, currency, name, capitalLocation } = country;
 
   return (
     <div className="country-card">
@@ -82,7 +80,9 @@ const[country,setCountry] = useState({  ['videoUrl '] : '',slider:[] ,capital:''
         </div>
         
       </div>
-      <CountryMap  coordinates={country.capitalLocation.coordinates}/>
+
+      <CountryMap coordinates = {capitalLocation.coordinates} />
+
     </div>
   );
 

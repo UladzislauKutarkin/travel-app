@@ -1,4 +1,4 @@
-import { Component, useLayoutEffect } from "react";
+import { Component } from "react";
 import './TimeWidget.scss';
 
 interface TimeType {
