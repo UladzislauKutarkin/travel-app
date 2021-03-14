@@ -65,15 +65,16 @@ class HomePage extends Component {
           params={{
             particles: {
               number: {
-                value: 142,
+                value: 50,
                 density: { enable: true, value_area: 552.4033491425909 },
               },
               color: { value: "#ffffff" },
               shape: {
                 type: "circle",
                 stroke: { width: 0, color: "#201c1c" },
-                polygon: { nb_sides: 6 },
-                image: { src: "", width: 170, height: 140 },
+                polygon: { nb_sides: 6, 
+                 },
+                
               },
               opacity: {
                 value: 0.5,
@@ -83,7 +84,7 @@ class HomePage extends Component {
               size: {
                 value: 4.004324670644295,
                 random: true,
-                anim: { enable: false, speed: 40, size_min: 0.1, sync: false },
+                anim: { enable: false, speed: 10, size_min: 0.1, sync: false },
               },
               line_linked: {
                 enable: true,
@@ -94,13 +95,8 @@ class HomePage extends Component {
               },
               move: {
                 enable: true,
-                speed: 6,
-                direction: "none",
-                random: false,
-                straight: false,
-                out_mode: "out",
-                bounce: false,
-                attract: { enable: false, rotateX: 600, rotateY: 1200 },
+                speed: 2,
+ 
               },
             },
             interactivity: {

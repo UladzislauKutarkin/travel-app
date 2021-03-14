@@ -5,6 +5,7 @@ import ReactMapGL , {FullscreenControl, Marker} from 'react-map-gl';
 
 const MAP_API = 'pk.eyJ1IjoieWF1aGVuaWJlaWR1ayIsImEiOiJja2o3b2llMzUwcDNwMnJwNWtuOG82MzlpIn0.cNTogxbQEyS45pQYibK8mA'
 
+
 const CountryMap = ({coordinates}) => {
 console.log(coordinates[0])
 
