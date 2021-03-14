@@ -63,26 +63,26 @@ class CurrencyWidget extends Component<CurrencyType> {
                 {
                     name: 'usd',
                     flag: 'us',
-                //    cur: _cur.USD.toFixed(3),
+                    cur: _cur.USD.toFixed(3),
                     sign: 'USD',
                 },
                 {
                     name: 'euro',
                     flag: 'eu',
-               //     cur: _cur.EUR.toFixed(3),
+                    cur: _cur.EUR.toFixed(3),
                     sign: 'EURO',
                 },
 
                 {
                     name: 'rus',
                     flag: 'ru',
-            //        cur: _cur.RUB.toFixed(3),
+                    cur: _cur.RUB.toFixed(3),
                     sign: 'RUB',
                 },
                 {
                     name: 'current',
                     flag: ISOCode.toLocaleLowerCase(),
-            //        cur:  _cur[out_currency].toFixed(3),
+                    cur:  _cur[out_currency].toFixed(3),
                     sign: out_currency,
                 },
             ];
