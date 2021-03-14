@@ -21,6 +21,7 @@ interface Country {
   currency: string;
   ISOCode: string;
   places: [];
+  headerDescription: string;
 }
 
 class HomePage extends Component {
@@ -59,10 +60,11 @@ class HomePage extends Component {
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
       );
     });
-
+ 
     return (
       <div className="container-fluid">
         <Header
+          
             setLng={this.setLng}
             showSearch={this.state.showSearch}
             search={this.state.search}
@@ -126,10 +128,11 @@ class HomePage extends Component {
           </Particles>
         <div className="cards-container">
           {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl }) => {
+            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription}) => {
               return (
                 <Card
-                lang={this.state.language}
+                  headerDescription={headerDescription}
+                  lang={this.state.language}
                   key={id}
                   id={id}
                   name={name}

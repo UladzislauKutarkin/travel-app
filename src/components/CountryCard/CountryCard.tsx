@@ -26,7 +26,8 @@ interface Country{
   ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
-  places: []
+  places: [],
+  headerDescription:string
   }
 
 interface Props {
@@ -38,7 +39,7 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
 
-const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const[country,setCountry] = useState({headerDescription:'',slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState(''|| 'en')
 
   const setFr= (event)=>{
@@ -53,14 +54,13 @@ const [lang, setLang]= useState(''|| 'en')
     setCountry(response.data)
   }
   useEffect( () => { fetchCountries()
-
   },[lang])
 
-  const { capital, ISOCode, currency, name, capitalLocation } = country;
+  const { capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
 
   return (
     <div className="country-card">
-      <Header  setFr={setFr}/>
+      <Header headerDescription={headerDescription} setFr={setFr}/>
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">

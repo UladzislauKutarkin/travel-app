@@ -6,11 +6,15 @@ const setMap = (coordinates) => {
     const map = new mapboxgl.Map({
         container: 'country_map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 11,
+        zoom:10,
         center: coordinates,
         pitch: 45,
         // bearing: 17.6,
     });
+    var marker = new mapboxgl.Marker()
+    .setLngLat(coordinates)
+    .addTo(map);
+    map.addControl(new mapboxgl.FullscreenControl());
 }
 
 export default setMap;
