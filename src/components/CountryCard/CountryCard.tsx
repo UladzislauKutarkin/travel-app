@@ -11,22 +11,24 @@ import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
 import CountryMap from "../CountryMap";
 
+import ReactPlayer from 'react-player'
+
 interface Country{
   id: string,
   capital: string,
   description: string,
   name: string,
   capitalLocation: {
-  coordinates: string[],
+  coordinates: Array<string>,
   type: string
   },
   imageUrl: string,
-  videoUrl:string,
+  ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
-  places: [],
-  slider:[]
+  places: []
   }
+
 interface Props {
   match?: {
     params: { id: string}
@@ -74,11 +76,13 @@ const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currenc
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
-          <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={country.videoUrl} thumbnail={titleVideo} />
+          <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
+        
       </div>
+
       <CountryMap coordinates = {capitalLocation.coordinates} />
+
     </div>
   );
 
