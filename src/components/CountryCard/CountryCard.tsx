@@ -9,6 +9,8 @@ import { withRouter } from 'react-router-dom';
 import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
+import ReactPlayer from 'react-player'
+import CountryMap from "../CountryMap/_CountryMap";
 
 interface Country{
   id: string,
@@ -16,16 +18,16 @@ interface Country{
   description: string,
   name: string,
   capitalLocation: {
-  coordinates: string[],
+  coordinates: Array<string>,
   type: string
   },
   imageUrl: string,
-  videoUrl:string,
+  ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
-  places: [],
-  slider:[]
+  places: []
   }
+
 interface Props {
   match?: {
     params: { id: string}
@@ -35,7 +37,7 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
 
-const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const[country,setCountry] = useState({  ['videoUrl '] : '',slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 
 
 
@@ -76,10 +78,11 @@ const[country,setCountry] = useState({slider:[] ,capital:'', ISOCode: '',currenc
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
-          <div className="country-description">Video about country!!!</div>
-          <ReactWebMediaPlayer video={country.videoUrl} thumbnail={titleVideo} />
+          <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
+        
       </div>
+      <CountryMap  coordinates={country.capitalLocation.coordinates}/>
     </div>
   );
 

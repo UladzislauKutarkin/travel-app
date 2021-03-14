@@ -21,8 +21,8 @@ export default function Header (props) {
             <div className='header-main-section-wrapper'>
                 {renderSearchBox()}
                 <img className='header-logo' src={logo} alt="logo"/>
-                <div>
-                    <span className='header-search-title'>Language</span>
+                <div >
+                    <span className=''>Language</span>
                     <select className='option-value'>
                         <option className='option-value' value='En' defaultValue='En'>En</option>
                         <option className='option-value' value='Ru' >Ru</option>
