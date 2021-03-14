@@ -49,7 +49,15 @@ class CurrencyWidget extends Component<CurrencyType> {
         if (prevProps !== this.props) {
 
             const {ISOCode, currency} = this.props;
-              this.setCurrencies( ISOCode, currency) ;
+
+/*
+*
+* ---------------UNCOMMENT TO GET WEATHER--------------------------
+*
+*/
+
+        //    this.setCurrencies( ISOCode, currency) ;
+
         }
     }
 
@@ -106,7 +114,7 @@ class CurrencyWidget extends Component<CurrencyType> {
                     currencies.map(currency => {
                      
 
-                        if (currency.name === 'current' && currency.sign ==  "USD" && this.props.currency == 'USD') {return <div></div>}
+                        if (currency.name === 'current' && currency.sign ===  "USD" && this.props.currency === 'USD') {return <div></div>}
                        
                             return ( <div className="currency-row">
                             <div className="flag" style={{ backgroundImage: `url(https://www.countryflags.io/${currency.flag}/shiny/64.png)` }}></div>
