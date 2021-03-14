@@ -133,6 +133,7 @@ class HomePage extends Component {
                   imageUrl={imageUrl}
                 />
               );
+
             })}
         </div>
       </div>
