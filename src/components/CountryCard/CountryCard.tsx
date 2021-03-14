@@ -10,7 +10,7 @@ import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
 import ReactPlayer from 'react-player'
-import CountryMap from "../CountryMap/CountryMap";
+import CountryMap from "../CountryMap/_CountryMap";
 
 interface Country{
   id: string,
