@@ -26,17 +26,24 @@ interface Country {
 class HomePage extends Component {
   state = {
     countries: [],
-    search: "",
+    search: '',
     showSearch: true,
-  };
+    language: 'en'
+  }
+
 
   componentDidMount() {
     this.setState({ countries: countries });
     axios
-      .get<Country[]>("http://localhost:3000/countries")
+      .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
   }
 
+  setLng = (event) => {
+    this.setState({
+      language: event.target.value
+    })
+  };
   setFilteredCards = () => {};
 
   changeHandler = (e) => {
@@ -56,10 +63,10 @@ class HomePage extends Component {
     return (
       <div className="container-fluid">
         <Header
-          showSearch={this.state.showSearch}
-          search={this.state.search}
-          changeHandler={this.changeHandler}
-        />
+            setLng={this.setLng}
+            showSearch={this.state.showSearch}
+            search={this.state.search}
+            changeHandler={this.changeHandler} />
   <Particles
           className="particles-js"
           params={{
@@ -122,6 +129,7 @@ class HomePage extends Component {
             filtered_countries.map(({ id, name, capital, imageUrl }) => {
               return (
                 <Card
+                lang={this.state.language}
                   key={id}
                   id={id}
                   name={name}
@@ -129,7 +137,6 @@ class HomePage extends Component {
                   imageUrl={imageUrl}
                 />
               );
-
             })}
         </div>
       </div>
