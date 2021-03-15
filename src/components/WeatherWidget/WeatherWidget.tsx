@@ -23,13 +23,12 @@ class WeatherWidget extends Component<WeatherTypes> {
 
     }
 
-
     setWeather = (city) => {
 
         getCityWeather(city).then(weather => {
 
             const _weather = {
-                city: weather['data']['name'],
+                city: this.props.capital,
                 temp: (
                     weather['data']['main']['temp'] - 273.15).toFixed(0),
                 feels: (
@@ -53,17 +52,6 @@ class WeatherWidget extends Component<WeatherTypes> {
         if (prevProps !== this.props) {
 
             this.setWeather(this.props.capital);
-
-            const _weather = {
-                city: this.props.capital,
-                temp: 0,
-                feels: 0,
-                humidity: 0,
-                wind: 0,
-                weather_icon: '',
-            };
-
-            this.setState({ weather: _weather });
 
         }
 
