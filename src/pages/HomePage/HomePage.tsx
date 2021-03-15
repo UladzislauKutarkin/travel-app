@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import { Component } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
+import setMap from "../../components/CountryMap/mapbox";
 
 
 interface Country {
@@ -21,7 +22,10 @@ interface Country {
   currency: string;
   ISOCode: string;
   places: [];
+  search: string;
+  searchPlaceholder: string;
   headerDescription: string;
+  wind: string;
 }
 
 class HomePage extends Component {
@@ -39,6 +43,14 @@ class HomePage extends Component {
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      console.log('componentDidUpdate', countries);
+      axios
+          .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
+          .then(({data}) => this.setState({countries: data}));
+    }
+  }
 
   setLng = (event) => {
     this.setState({
@@ -51,9 +63,13 @@ class HomePage extends Component {
     this.setState({ search: e.target.value });
   };
 
+
   render() {
     const { countries, search } = this.state;
-
+    const description = countries.map(({headerDescription})=> headerDescription)
+    const searchLine = countries.map(({search})=> search)
+    const searchPlaceHolder = countries.map(({searchPlaceholder})=> searchPlaceholder)
+    console.log(searchPlaceHolder)
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
@@ -62,9 +78,12 @@ class HomePage extends Component {
     });
  
     return (
+
       <div className="container-fluid">
         <Header
-          
+            searchline={searchLine}
+            placeHolder={searchPlaceHolder}
+            discription={description}
             setLng={this.setLng}
             showSearch={this.state.showSearch}
             search={this.state.search}
