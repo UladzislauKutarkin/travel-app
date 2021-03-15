@@ -34,17 +34,31 @@ class HomePage extends Component {
 
 
   componentDidMount() {
-    this.setState({ countries: countries });
+    this.getCountries();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+   
+    if (prevState.language !== this.state.language) {
+   this.getCountries();
+    }
+  }
+
+
+  getCountries = () => {
+    
     axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
-  }
+   }
 
   setLng = (event) => {
+
     this.setState({
       language: event.target.value
     })
   };
+  
   setFilteredCards = () => {};
 
   changeHandler = (e) => {
@@ -60,12 +74,12 @@ class HomePage extends Component {
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
       );
     });
- 
+
     return (
       <div className="container-fluid">
         <Header
-          
-            setLng={this.setLng}
+
+            setFr={this.setLng}
             showSearch={this.state.showSearch}
             search={this.state.search}
             changeHandler={this.changeHandler} />
@@ -81,9 +95,9 @@ class HomePage extends Component {
               shape: {
                 type: "circle",
                 stroke: { width: 0, color: "#201c1c" },
-                polygon: { nb_sides: 6, 
+                polygon: { nb_sides: 6,
                  },
-                
+
               },
               opacity: {
                 value: 0.5,
@@ -105,7 +119,7 @@ class HomePage extends Component {
               move: {
                 enable: true,
                 speed: 2,
- 
+
               },
             },
             interactivity: {
