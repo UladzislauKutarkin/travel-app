@@ -75,7 +75,7 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
   return (
     <div className="country-card">
       <ScrollToTopOnMount />
-      <ScrollUpButton AnimationDuration={1500} style={{ backgroundColor: '#c0c0c045', border: '1px solid black' }} />
+      <ScrollUpButton AnimationDuration={1500} style={{ backgroundColor: '#c0c0c045', border: '1px solid black', zIndex: '5'}} />
       <Header headerDescription={headerDescription} setFr={setFr} />
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
