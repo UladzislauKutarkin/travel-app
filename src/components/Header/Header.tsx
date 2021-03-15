@@ -3,27 +3,48 @@ import videoMountain from "../../assets/video/Mountain.mp4";
 import '../Header/Header.scss';
 import logo from '../../assets/imgs/logo.png.png'
 import SearchBox from '../SearchBox';
+import {Link} from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
+import HomePage from "../../pages/HomePage";
 
 
 export default function Header (props) {
-
     function renderSearchBox() {
         if (props.showSearch){
             return <SearchBox placeholder='Search country' {...props}/>
         }
     }
+
+    function translation (e){
+        if (props.showSearch){
+            props.setLng(e)
+        } else {
+            props.setFr(e)
+        }
+    }
+    function renderDescription() {
+        if (props.showSearch){
+            return <p className='header-param'>{props.discription[0]}</p>
+        } else {
+            return <p className='header-param'>{props.headerDescription}</p>
+        }
+    }
+    console.log(props.headerDescription)
 //   const   {changeHandler,search } = props;
     return (
+        <BrowserRouter>
         <header className='header-wrapper'>
             <video className='header-video' autoPlay loop muted preload='true'>
                 <source src={videoMountain}/>
             </video>
             <div className='header-main-section-wrapper'>
                 {renderSearchBox()}
+                <Link to='/' target="_top">
                 <img className='header-logo' src={logo} alt="logo"/>
+                </Link>
                 <div>
                     <span className=''>Language</span>
-                    <select   onChange = {props.setFr} className='option-value'>
+                    <select   onChange = {translation} className='option-value'>
                         <option className='option-value' value='en'>En</option>
                         <option className='option-value' value='ru'>Ru</option>
                         <option className='option-value' value='fr'>Fr</option>
@@ -32,10 +53,9 @@ export default function Header (props) {
 
             </div>
             <div className='header-travel-app-description'>
-                <p className='header-param'>What is a <strong>travel app?</strong>
-                    Travel app is the app that helps users find out more about country that he wants to visit.</p>
+                {renderDescription()}
             </div>
         </header>
-
+        </BrowserRouter>
     );
 }

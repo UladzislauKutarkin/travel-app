@@ -56,7 +56,6 @@ color: #FFFFFF;
 .country-video {
    display: flex;
    flex-direction: column;
-   width: 50%;
 }
 
 .country-descriptions {
@@ -77,9 +76,18 @@ color: #FFFFFF;
 .country-wrapper--video-map{
     display: flex;
     flex-direction: row;
+    place-content: center;
+    margin-top: 5vh;
 }
 
 .slider{
     width: 100%;
     height: 200px;
+}
+
+.map-div{
+    display: flex;
+    place-content: center;
+    margin-top: 10vh;
+    padding-bottom: 10vh;
 }
