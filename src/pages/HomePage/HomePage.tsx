@@ -5,7 +5,9 @@ import Header from "../../components/Header/Header";
 import { Component } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 import setMap from "../../components/CountryMap/mapbox";
+
 
 
 interface Country {
@@ -80,6 +82,13 @@ class HomePage extends Component {
     return (
 
       <div className="container-fluid">
+        <ScrollUpButton AnimationDuration={1000} 
+        style={{ 
+        backgroundColor: '##c0c0c000',
+        border: '0px solid black',
+        right: '16px',
+        zIndex: '1',
+        boxShadow: '#ffffff6b 0px 1px 10px'}} />
         <Header
             searchline={searchLine}
             placeHolder={searchPlaceHolder}
