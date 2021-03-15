@@ -12,38 +12,50 @@ import Header from "../Header/Header";
 import CountryMap from "../CountryMap";
 
 import ReactPlayer from 'react-player'
-import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";        
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";;
 
-interface Country{
+
+interface Country {
   id: string,
   capital: string,
   description: string,
   name: string,
   capitalLocation: {
-  coordinates: Array<string>,
-  type: string
+    coordinates: Array<string>,
+    type: string
   },
   imageUrl: string,
   ['videoUrl ']: string,
   currency: string,
   ISOCode: string,
   places: [],
-  headerDescription:string
-  }
+  headerDescription: string
+}
 
 interface Props {
   match?: {
-    params: { id: string}
+    params: { id: string }
   },
   coordinates: string[]
 }
 
-const CountryCard = ({match}:Props):React.ReactElement => {
+function ScrollToTopOnMount() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+  });
+  }, []);
 
-const[country,setCountry] = useState({headerDescription:'',slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
-const [lang, setLang]= useState(''|| 'en')
+  return null;
+}
 
-  const setFr= (event)=>{
+const CountryCard = ({ match }: Props): React.ReactElement => {
+
+  const [country, setCountry] = useState({ headerDescription: '', slider: [], capital: '', ISOCode: '', currency: '', name: '', description: '', imageUrl: '', videoUrl: '', capitalLocation: { coordinates: [] } });
+  const [lang, setLang] = useState('' || 'en')
+
+  const setFr = (event) => {
     setLang(event.target.value)
     console.log(event.target.value)
     console.log(lang)
@@ -54,15 +66,17 @@ const [lang, setLang]= useState(''|| 'en')
     const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
-  useEffect( () => { fetchCountries()
-  },[lang])
+  useEffect(() => {
+    fetchCountries()
+  }, [lang])
 
   const { capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
 
   return (
     <div className="country-card">
-      <ScrollUpButton AnimationDuration = { 1500 } style={{backgroundColor: '#c0c0c045', border: '1px solid black'}}/>
-      <Header headerDescription={headerDescription} setFr={setFr}/>
+      <ScrollToTopOnMount />
+      <ScrollUpButton AnimationDuration={1500} style={{ backgroundColor: '#c0c0c045', border: '1px solid black' }} />
+      <Header headerDescription={headerDescription} setFr={setFr} />
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">
@@ -78,20 +92,20 @@ const [lang, setLang]= useState(''|| 'en')
             {country.description}
           </div>
         </div>
-        <WidgetsBox capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
+        <WidgetsBox capital={capital} ISOCode={ISOCode} currency={currency} name={name} />
       </div>
 
-      <ImageGallery items={country.slider}/>
+      <ImageGallery items={country.slider} />
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
-        
+
       </div>
-
-      <CountryMap coordinates = {capitalLocation.coordinates} />
-
+      <div className='map-div'>
+        <CountryMap coordinates={capitalLocation.coordinates} />
+      </div>
     </div>
   );
 

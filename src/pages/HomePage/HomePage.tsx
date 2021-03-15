@@ -5,6 +5,8 @@ import Header from "../../components/Header/Header";
 import { Component } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+
 
 
 interface Country {
@@ -63,6 +65,7 @@ class HomePage extends Component {
  
     return (
       <div className="container-fluid">
+        <ScrollUpButton AnimationDuration={1000} style={{ backgroundColor: '##c0c0c000', border: '0px solid black', right: '16px'}} />
         <Header
           
             setLng={this.setLng}
