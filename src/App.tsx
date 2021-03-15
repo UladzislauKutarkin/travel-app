@@ -4,7 +4,7 @@ import {Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CountryPage from './pages/CountryPage';
 import Footer from "./components/Footer/footer";
-import ScrollToTop from "./utility/ScrollToTop";
+
 
 
 

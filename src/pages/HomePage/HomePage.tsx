@@ -27,8 +27,6 @@ interface Country {
   search: string;
   searchPlaceholder: string;
   headerDescription: string;
-  search:string;
-  searchPlaceholder:string;
   language: string;
   feelsLike:string;
   wind:string;
@@ -71,13 +69,13 @@ class HomePage extends Component {
   };
 
 
-  componentDidUpdate(prevProps,event) {
-    if (prevProps !== this.props)
+  // componentDidUpdate(prevProps,event) {
+  //   if (prevProps !== this.props)
     
-    this.setState({
-      language: event.target.value
-    })
-  }
+  //   this.setState({
+  //     language: event.target.value
+  //   })
+  // }
 
   setFilteredCards = () => {};
 

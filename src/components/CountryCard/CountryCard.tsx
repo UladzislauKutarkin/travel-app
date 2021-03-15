@@ -117,12 +117,8 @@ const [lang, setLang]= useState(''|| 'en')
 
         
       </div>
-
-      <CountryMap coordin={coordin} coordinates = {capitalLocation.coordinates} />
-
-      </div>
       <div className='map-div'>
-        <CountryMap coordinates={capitalLocation.coordinates} />
+      <CountryMap coordin={coordin} coordinates = {capitalLocation.coordinates} />
       </div>
     </div>
   );
