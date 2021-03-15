@@ -29,14 +29,18 @@ interface Country {
   currency: string,
   ISOCode: string,
   places: [],
-  headerDescription: string
-}
+  headerDescription:string;
+  wind:string;
+  slid:[];
+  coordin:[]
+  }
+
 
 interface Props {
   match?: {
     params: { id: string }
   },
-  coordinates: string[]
+  coordinates: string[];
 }
 
 function ScrollToTopOnMount() {
@@ -52,8 +56,11 @@ function ScrollToTopOnMount() {
 
 const CountryCard = ({ match }: Props): React.ReactElement => {
 
-  const [country, setCountry] = useState({ headerDescription: '', slider: [], capital: '', ISOCode: '', currency: '', name: '', description: '', imageUrl: '', videoUrl: '', capitalLocation: { coordinates: [] } });
-  const [lang, setLang] = useState('' || 'en')
+
+const[country,setCountry] = useState({headerDescription:'', coordin:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
+        name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const [lang, setLang]= useState(''|| 'en')
+
 
   const setFr = (event) => {
     setLang(event.target.value)
@@ -61,16 +68,20 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
     console.log(lang)
   }
 
-
   const fetchCountries = async () => {
     const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
-  useEffect(() => {
-    fetchCountries()
-  }, [lang])
 
-  const { capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  useEffect( () => {
+  fetchCountries();
+  },[lang , country.coordin])
+
+  const {wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+
+
+
+
 
   return (
     <div className="country-card">
@@ -92,15 +103,22 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
             {country.description}
           </div>
         </div>
-        <WidgetsBox capital={capital} ISOCode={ISOCode} currency={currency} name={name} />
+
+        <WidgetsBox wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
-      <ImageGallery items={country.slider} />
+      <ImageGallery items={country.slid}/>
+
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <ReactPlayer controls={true} url={country["videoUrl "]} />
         </div>
+
+        
+      </div>
+
+      <CountryMap coordin={coordin} coordinates = {capitalLocation.coordinates} />
 
       </div>
       <div className='map-div'>

@@ -6,13 +6,13 @@ import "./WidgetsBox.scss";
 const WidgetsBox = (props:any) => {
 
 
-   const { capital, ISOCode, currency, name}:any = props;
+   const {wind, capital, ISOCode, currency, name}:any = props;
  
    
 
   return (
     <div className="widget_box">
-      <WeatherWidget capital = {capital} />
+      <WeatherWidget winder={wind} capital = {capital} />
       <TimeWidget  ISOCode = {ISOCode} />
       <CurrencyWidget  ISOCode = {ISOCode}  currency = {currency} name = {name}/>
     </div>

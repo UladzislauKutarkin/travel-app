@@ -27,7 +27,14 @@ interface Country {
   search: string;
   searchPlaceholder: string;
   headerDescription: string;
-  wind: string;
+  search:string;
+  searchPlaceholder:string;
+  language: string;
+  feelsLike:string;
+  wind:string;
+  humidity:string;
+  localTime:string;
+  coordin: [];
 }
 
 class HomePage extends Component {
@@ -44,6 +51,7 @@ class HomePage extends Component {
     axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
+ 
   }
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -54,16 +62,30 @@ class HomePage extends Component {
     }
   }
 
+
+
   setLng = (event) => {
     this.setState({
       language: event.target.value
     })
   };
+
+
+  componentDidUpdate(prevProps,event) {
+    if (prevProps !== this.props)
+    
+    this.setState({
+      language: event.target.value
+    })
+  }
+
   setFilteredCards = () => {};
+
 
   changeHandler = (e) => {
     this.setState({ search: e.target.value });
   };
+
 
 
   render() {
@@ -78,7 +100,6 @@ class HomePage extends Component {
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
       );
     });
- 
     return (
 
       <div className="container-fluid">
@@ -90,6 +111,7 @@ class HomePage extends Component {
         zIndex: '1',
         boxShadow: '#ffffff6b 0px 1px 10px'}} />
         <Header
+
             searchline={searchLine}
             placeHolder={searchPlaceHolder}
             discription={description}
@@ -156,7 +178,7 @@ class HomePage extends Component {
           </Particles>
         <div className="cards-container">
           {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription}) => {
+            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription, wind}) => {
               return (
                 <Card
                   headerDescription={headerDescription}
@@ -166,6 +188,7 @@ class HomePage extends Component {
                   name={name}
                   capital={capital}
                   imageUrl={imageUrl}
+                  wind={wind}
                 />
               );
             })}
