@@ -62,14 +62,7 @@ getCountries = () => {
     }
   }
 
-
-
-
-
-
   setLng = (event) => {
-
-    console.log('setLng');
     
     this.setState({
       language: event.target.value
@@ -77,13 +70,6 @@ getCountries = () => {
   };
 
 
-  // componentDidUpdate(prevProps,event) {
-  //   if (prevProps !== this.props)
-    
-  //   this.setState({
-  //     language: event.target.value
-  //   })
-  // }
 
   setFilteredCards = () => {};
 
@@ -99,7 +85,6 @@ getCountries = () => {
     const description = countries.map(({headerDescription})=> headerDescription)
     const searchLine = countries.map(({search})=> search)
     const searchPlaceHolder = countries.map(({searchPlaceholder})=> searchPlaceholder)
-    console.log(searchPlaceHolder)
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
