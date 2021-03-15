@@ -12,6 +12,7 @@ import Header from "../Header/Header";
 import CountryMap from "../CountryMap";
 
 import ReactPlayer from 'react-player'
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";        
 
 interface Country{
   id: string,
@@ -60,6 +61,7 @@ const [lang, setLang]= useState(''|| 'en')
 
   return (
     <div className="country-card">
+      <ScrollUpButton AnimationDuration = { 1500 } style={{backgroundColor: '#c0c0c045', border: '1px solid black'}}/>
       <Header headerDescription={headerDescription} setFr={setFr}/>
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
