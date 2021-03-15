@@ -77,6 +77,8 @@ color: #FFFFFF;
 .country-wrapper--video-map{
     display: flex;
     flex-direction: row;
+    place-content: center;
+    margin-top: 5vh;
 }
 
 .slider{
