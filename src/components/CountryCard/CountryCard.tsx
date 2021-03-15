@@ -29,19 +29,20 @@ interface Country{
   places: [],
   headerDescription:string;
   wind:string;
-  slid:[]
+  slid:[];
+  coordin:[]
   }
 
 interface Props {
   match?: {
     params: { id: string}
   },
-  coordinates: string[]
+  coordinates: string[];
 }
 
 const CountryCard = ({match}:Props):React.ReactElement => {
 
-const[country,setCountry] = useState({headerDescription:'',wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const[country,setCountry] = useState({headerDescription:'', coordin:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState(''|| 'en')
 
   const setFr= (event)=>{
@@ -50,15 +51,20 @@ const [lang, setLang]= useState(''|| 'en')
     console.log(lang)
   }
 
-
   const fetchCountries = async () => {
     const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
-  useEffect( () => { fetchCountries()
-  },[lang])
 
-  const {wind, capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  useEffect( () => {
+  fetchCountries();
+  },[lang , country.coordin])
+
+  const {wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+
+
+
+
 
   return (
     <div className="country-card">
@@ -90,7 +96,7 @@ const [lang, setLang]= useState(''|| 'en')
         
       </div>
 
-      <CountryMap coordinates = {capitalLocation.coordinates} />
+      <CountryMap coordin={coordin} coordinates = {capitalLocation.coordinates} />
 
     </div>
   );

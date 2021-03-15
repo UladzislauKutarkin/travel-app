@@ -29,6 +29,7 @@ interface Country {
   wind:string;
   humidity:string;
   localTime:string;
+  coordin: [];
 }
 
 class HomePage extends Component {
@@ -45,6 +46,7 @@ class HomePage extends Component {
     axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
+ 
   }
 
 
@@ -58,6 +60,7 @@ class HomePage extends Component {
 
   componentDidUpdate(prevProps,event) {
     if (prevProps !== this.props)
+    
     this.setState({
       language: event.target.value
     })
@@ -70,8 +73,12 @@ class HomePage extends Component {
     this.setState({ search: e.target.value });
   };
 
-  render() {
+
+
+render() {
     const { countries, search } = this.state;
+
+   
 
     const filtered_countries = countries.filter((c) => {
       return (
@@ -79,11 +86,10 @@ class HomePage extends Component {
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
       );
     });
- console.log(countries[0])
     return (
       <div className="container-fluid">
         <Header
-          
+
             setLng={this.setLng}
             showSearch={this.state.showSearch}
             search={this.state.search}

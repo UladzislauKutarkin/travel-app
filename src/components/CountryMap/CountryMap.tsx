@@ -4,7 +4,7 @@ import setMap from './mapbox';
 
 interface CountryMapType {
     coordinates: any[],
-
+    coordin:any
 }
 
 class CountryMap extends Component<CountryMapType> {
@@ -29,16 +29,28 @@ class CountryMap extends Component<CountryMapType> {
 
     componentDidMount() {
         console.log('componentDidMount');
-
-        setMap(this.state.coordinates);
+        // setMap(this.state.coordinates);
     }
+
+
+    getCoordinates = (coordinatesBD) => {
+        console.log('coordinatesBD', coordinatesBD);
+         const _arr = coordinatesBD.split(',');
+         const nextArr: any[] = [];
+        for (let i = 0; i < _arr.length; i+=2) {
+          let doubleArr = [].concat(_arr[i], _arr[i+1]);
+         nextArr.push(doubleArr);
+        }
+        const finalArr = [nextArr];
+        return finalArr;
+      }
 
 
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
             console.log('componentDidUpdate', this.props.coordinates);
-
-            setMap(this.props.coordinates);
+           
+            setMap(this.props.coordinates, this.getCoordinates(this.props.coordin));
             this.setState({ coordinates: this.props.coordinates })
         }
 
