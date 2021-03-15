@@ -5,10 +5,13 @@ import logo from '../../assets/imgs/logo.png.png'
 import SearchBox from '../SearchBox';
 import {Link} from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
-import HomePage from "../../pages/HomePage";
+
 
 
 export default function Header (props) {
+
+    console.log('Header props', props);
+    
     function renderSearchBox() {
         if (props.showSearch){
             return <SearchBox placeholder='Search country' {...props}/>
@@ -17,11 +20,14 @@ export default function Header (props) {
 
     function translation (e){
         if (props.showSearch){
-            props.setLng(e)
+          return  props.setLng(e)
         } else {
-            props.setFr(e)
+        return  props.setFr(e)
         }
+
     }
+
+
     function renderDescription() {
         if (props.showSearch){
             return <p className='header-param'>{props.discription[0]}</p>

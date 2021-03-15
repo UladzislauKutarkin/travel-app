@@ -6,7 +6,6 @@ import { Component } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
-import setMap from "../../components/CountryMap/mapbox";
 
 
 
@@ -46,36 +45,31 @@ class HomePage extends Component {
 
   componentDidMount() {
     this.setState({ countries: countries });
-    axios
+    this.getCountries();
+  
+  }
+
+getCountries = () => {
+  axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
  
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      console.log('componentDidUpdate', countries);
-      axios
-          .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
-          .then(({data}) => this.setState({countries: data}));
+}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.language !== this.state.language) {
+      this.getCountries();
     }
   }
 
-
-
   setLng = (event) => {
+    
     this.setState({
       language: event.target.value
     })
   };
 
 
-  // componentDidUpdate(prevProps,event) {
-  //   if (prevProps !== this.props)
-    
-  //   this.setState({
-  //     language: event.target.value
-  //   })
-  // }
 
   setFilteredCards = () => {};
 
@@ -91,7 +85,6 @@ class HomePage extends Component {
     const description = countries.map(({headerDescription})=> headerDescription)
     const searchLine = countries.map(({search})=> search)
     const searchPlaceHolder = countries.map(({searchPlaceholder})=> searchPlaceholder)
-    console.log(searchPlaceHolder)
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
