@@ -22,6 +22,13 @@ interface Country {
   ISOCode: string;
   places: [];
   headerDescription: string;
+  search:string;
+  searchPlaceholder:string;
+  language: string;
+  feelsLike:string;
+  wind:string;
+  humidity:string;
+  localTime:string;
 }
 
 class HomePage extends Component {
@@ -40,12 +47,24 @@ class HomePage extends Component {
       .then(({ data }) => this.setState({ countries: data }));
   }
 
+
+
   setLng = (event) => {
     this.setState({
       language: event.target.value
     })
   };
+
+
+  componentDidUpdate(prevProps,event) {
+    if (prevProps !== this.props)
+    this.setState({
+      language: event.target.value
+    })
+  }
+
   setFilteredCards = () => {};
+
 
   changeHandler = (e) => {
     this.setState({ search: e.target.value });
@@ -60,7 +79,7 @@ class HomePage extends Component {
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
       );
     });
- 
+ console.log(countries[0])
     return (
       <div className="container-fluid">
         <Header
@@ -128,7 +147,7 @@ class HomePage extends Component {
           </Particles>
         <div className="cards-container">
           {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription}) => {
+            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription, wind}) => {
               return (
                 <Card
                   headerDescription={headerDescription}
@@ -138,6 +157,7 @@ class HomePage extends Component {
                   name={name}
                   capital={capital}
                   imageUrl={imageUrl}
+                  wind={wind}
                 />
               );
             })}

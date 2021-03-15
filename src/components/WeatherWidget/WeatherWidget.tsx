@@ -3,7 +3,7 @@ import { Component } from 'react';
 import getCityWeather from './openweathermap';
 interface WeatherTypes {
     capital: string;
-
+    winder:string
 }
 
 
@@ -89,7 +89,7 @@ class WeatherWidget extends Component<WeatherTypes> {
                         <div> <img className="weather_icon" src={weather_icon} alt="icon" /></div>
 
                         <div>feels like: {feels}&#176;</div>
-                        <div>wind: {wind} m/s</div>
+                        <div>{this.props.winder}: {wind} m/s</div>
                         <div>humidity: {humidity}%</div>
                     </div>
                 </div>

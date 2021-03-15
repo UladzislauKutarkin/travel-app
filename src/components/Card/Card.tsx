@@ -13,6 +13,7 @@ interface Props {
     id: string,
     imageUrl: string,
     lang:string
+    wind:string
 }
 
 const Card = ({ name, capital, match, history, id, imageUrl }: Props): React.ReactElement => {
@@ -23,13 +24,9 @@ const Card = ({ name, capital, match, history, id, imageUrl }: Props): React.Rea
         }>
             <div className="background-image" style={{ backgroundImage: `url(${imageUrl})` }} ></div>
             <div className="content">
-                <h2 className="title">{name} </h2>
+                <h2 className="title">{name}</h2>
                 <span className="subtitle">{capital}</span>
             </div>
-
-
-
-
         </div>
     )
 }

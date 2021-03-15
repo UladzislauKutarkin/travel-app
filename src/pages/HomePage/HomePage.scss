@@ -1,43 +1,38 @@
 .container-fluid {
-	max-width: 1400px;
-	margin: 0 auto;
-	position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
 }
 
-
 .header {
-	width: 100%;
-	height: 60px;
-
+  width: 100%;
+  height: 60px;
 }
 
 .cards-container {
-	margin-top: 5rem;
-	padding: 1rem;
-	display: grid;
-
-
-	grid-template-columns: repeat(auto-fill, minmax(10.75rem, 25.75rem));
-	grid-template-rows: 1fr;
-	grid-column-gap: 4rem;
-	grid-row-gap: 4rem;
-
-	justify-content: center;
-	position: relative;
+  margin-top: 5rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.75rem, 25.75rem));
+  grid-template-rows: 1fr;
+  grid-column-gap: 4rem;
+  grid-row-gap: 4rem;
+  justify-content: center;
+  // position: relative;
 }
 canvas {
-	display: block;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-  }
-  
-  .particles-js {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: #1d1d1d;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50% 50%;
-  }
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}

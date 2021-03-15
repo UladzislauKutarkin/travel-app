@@ -27,7 +27,9 @@ interface Country{
   currency: string,
   ISOCode: string,
   places: [],
-  headerDescription:string
+  headerDescription:string;
+  wind:string;
+  slid:[]
   }
 
 interface Props {
@@ -39,7 +41,7 @@ interface Props {
 
 const CountryCard = ({match}:Props):React.ReactElement => {
 
-const[country,setCountry] = useState({headerDescription:'',slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const[country,setCountry] = useState({headerDescription:'',wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState(''|| 'en')
 
   const setFr= (event)=>{
@@ -56,7 +58,7 @@ const [lang, setLang]= useState(''|| 'en')
   useEffect( () => { fetchCountries()
   },[lang])
 
-  const { capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  const {wind, capital, ISOCode, currency, name, capitalLocation, headerDescription } = country;
 
   return (
     <div className="country-card">
@@ -76,10 +78,10 @@ const [lang, setLang]= useState(''|| 'en')
             {country.description}
           </div>
         </div>
-        <WidgetsBox capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
+        <WidgetsBox wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
-      <ImageGallery items={country.slider}/>
+      <ImageGallery items={country.slid}/>
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
