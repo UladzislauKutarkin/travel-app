@@ -78,8 +78,6 @@ getCountries = () => {
     this.setState({ search: e.target.value });
   };
 
-
-
   render() {
     const { countries, search } = this.state;
     const description = countries.map(({headerDescription})=> headerDescription)
