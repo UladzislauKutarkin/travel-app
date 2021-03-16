@@ -8,7 +8,6 @@ import Particles from "react-particles-js";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
 
-
 interface Country {
   id: string;
   capital: string;
@@ -41,13 +40,15 @@ class HomePage extends Component {
 
     input: '',
     showSearch: true,
-    language: 'en'
+    language: ''
   }
 
 
   componentDidMount() {
-    this.setState({ countries: countries });
+    this.setLanguage()
     this.getCountries();
+    this.setState({ countries: countries });
+
 
   }
 
@@ -61,6 +62,8 @@ class HomePage extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.language !== this.state.language) {
       this.getCountries();
+      console.log(this.state.language)
+      console.log(countries)
     }
 
     if (prevState.input !== this.state.input) {
@@ -70,12 +73,26 @@ class HomePage extends Component {
     }
   }
 
-  setLng = (e) => {
 
+  setLanguage= ()=>{
+    if(localStorage.getItem('languag') ===''){
+      this.setState({
+        language : 'en'
+      });
+    } else {
+      this.setState({
+        language : localStorage.getItem('languag')
+      });
+    }
+    }
+
+  setLng = (event) => {
+    localStorage.setItem('languag', event.target.value);
     this.setState({
-      language: e.target.value
+      language: localStorage.getItem('languag')
     })
   };
+
 
 
 
@@ -100,6 +117,7 @@ class HomePage extends Component {
     const description = countries.map(({ headerDescription }) => headerDescription)
     const searchLine = countries.map(({ search }) => search)
     const searchPlaceHolder = countries.map(({ searchPlaceholder }) => searchPlaceholder)
+    const languageLine = countries.map(({language})=> language)
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
@@ -118,7 +136,8 @@ class HomePage extends Component {
             boxShadow: '#ffffff6b 0px 1px 10px'
           }} />
         <Header
-
+          language={this.state.language}
+          languageLine={languageLine}
           searchline={searchLine}
           placeHolder={searchPlaceHolder}
           discription={description}

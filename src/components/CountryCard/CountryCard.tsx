@@ -10,7 +10,6 @@ import "react-image-gallery/styles/css/image-gallery.css"
 import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
 import CountryMap from "../CountryMap";
-
 import ReactPlayer from 'react-player'
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";;
 
@@ -58,29 +57,39 @@ function ScrollToTopOnMount() {
 const CountryCard  = ({ match }: Props): React.ReactElement => {
 
 
-const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', currenc:'', ISOCode: '',currency: '',
-        name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
-const [lang, setLang]= useState(''|| 'en')
+const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
+        name: '', language: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
+
+
 
 
   const setFr = (event) => {
-    setLang(event.target.value)
-   
+    localStorage.setItem('languag', event.target.value)
+    setLang(localStorage.getItem('languag'))
+      console.log(lang)
   }
 
   const fetchCountries = async () => {
     const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
-
+  const  setLanguage= ()=>{
+      const localLanguage = localStorage.getItem('language');
+      if(localLanguage===''){
+          localStorage.setItem('language', 'en')
+      }
+      }
   useEffect( () => {
   fetchCountries();
-  },[lang , country.coordin]);
+  setLanguage()
+  },[lang]);
 
   console.log('country ',country);
   
 
-  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, currenc,  ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription, language } = country;
+
 
 
 
@@ -90,7 +99,7 @@ const [lang, setLang]= useState(''|| 'en')
     <div className="country-card">
       <ScrollToTopOnMount />
       <ScrollUpButton AnimationDuration={1500} style={{ backgroundColor: '#c0c0c045', border: '1px solid black', zIndex: '5'}} />
-      <Header headerDescription={headerDescription} setFr={setFr} />
+      <Header headerDescription={headerDescription} setFr={setFr} langLine={language}  lng={lang}/>
       <div className="country-wrapper--description">
         <div className="country-wrapper-desriptions">
           <div className="country-photo--wrapper">
