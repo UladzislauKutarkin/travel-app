@@ -67,7 +67,6 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
   const setFr = (event) => {
     localStorage.setItem('languag', event.target.value)
     setLang(localStorage.getItem('languag'))
-      console.log(lang)
   }
 
   const fetchCountries = async () => {
@@ -85,15 +84,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
   setLanguage()
   },[lang]);
 
-  console.log('country ',country);
-  
-
   const {localTime, currenc, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription, language } = country;
-
-
-
-
-
 
   return (
     <div className="country-card">

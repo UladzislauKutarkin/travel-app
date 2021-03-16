@@ -2,7 +2,7 @@ import Card from "../../components/Card";
 import "./HomePage.scss";
 import countries from "../../data/counties";
 import Header from "../../components/Header/Header";
-import { Component } from "react";
+import React, { Component, useEffect, useCallback, useMemo, useState } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
@@ -33,33 +33,42 @@ interface Country {
   coordin: [];
 }
 
-class HomePage extends Component {
-  state = {
+const HomePage= ()=> {
+  const [countries, setCountries] = useState<any>([]),
+      [search, setSearch]= useState(''),
+      [input, setInput] = useState(''),
+      [showSearch, setShowSearch]= useState(true),
+      [lang, setLang] = useState<string|null>(localStorage.getItem('languag'));
+      const [isDataFetched, setDataFetched] = useState(false)
+/*  state = {
     countries: [],
     search: '',
 
     input: '',
     showSearch: true,
     language: ''
-  }
+  }*/
 
-
-  componentDidMount() {
+useEffect(()=>{
+    console.log('privet')
+    getLanguages();
+    getCountries();
+    console.log(countries[0])
+}, [isDataFetched, lang])
+/*  componentDidMount() {
     this.setLanguage()
     this.getCountries();
     this.setState({ countries: countries });
 
 
-  }
-
-  getCountries = () => {
+  }*/
+  const getCountries = () => {
     axios
-      .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
-      .then(({ data }) => this.setState({ countries: data }));
-
+      .get<Country[]>(`http://localhost:3000/countries?lang=${lang}`)
+      .then(({ data }) => setCountries(data)).then(()=> setDataFetched(true))
   }
 
-  componentDidUpdate(prevProps, prevState) {
+/*  componentDidUpdate(prevProps, prevState) {
     if (prevState.language !== this.state.language) {
       this.getCountries();
       console.log(this.state.language)
@@ -71,50 +80,46 @@ class HomePage extends Component {
         this.setState({ search: '' });
       }
     }
-  }
+  }*/
 
 
-  setLanguage= ()=>{
+  const getLanguages = ()=>{
     if(localStorage.getItem('languag') ===''){
-      this.setState({
-        language : 'en'
-      });
+      setLang('en');
     } else {
-      this.setState({
-        language : localStorage.getItem('languag')
-      });
+      setLang(localStorage.getItem('languag'))
     }
     }
 
-  setLng = (event) => {
+  const setLng = (event) => {
     localStorage.setItem('languag', event.target.value);
-    this.setState({
-      language: localStorage.getItem('languag')
-    })
+    setLang(localStorage.getItem('languag'))
   };
 
 
 
 
-  changeHandler = (e) => {
-
-    this.setState({ input: e.target.value });
+  const changeHandler = (e) => {
+    setInput(e.target.value)
+/*    this.setState({ input: e.target.value });*/
   };
 
 
-  handleKeyPress = (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      this.setState({ search: this.state.input });
+      setSearch(input)
+/*      this.setState({ search: this.state.input });*/
     }
   };
 
-  onClickSearchHandler = (e) => {
-    this.setState({ search: this.state.input });
+  const onClickSearchHandler = (e) => {
+    setSearch(input)
+/*    this.setState({ search: this.state.input });*/
   };
 
-  render() {
-    const { countries, search, input } = this.state;
-    const description = countries.map(({ headerDescription }) => headerDescription)
+
+/*    const { countries, search, input } = countries;*/
+/*    const description = countries.map(({ headerDescription }) => headerDescription)
     const searchLine = countries.map(({ search }) => search)
     const searchPlaceHolder = countries.map(({ searchPlaceholder }) => searchPlaceholder)
     const languageLine = countries.map(({language})=> language)
@@ -122,10 +127,26 @@ class HomePage extends Component {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
-      );
-    });
+      );*/
+    const countryCardMap =(countries)=> {
+      return countries.length && countries.map(({ id, wind,capital,
+              name, language,imageUrl}) => {
+        return (
+            <Card
+                lang={language}
+                key={id}
+                id={id}
+                name={name}
+                capital={capital}
+                imageUrl={imageUrl}
+                wind={wind}
+            />
+        );
+      })}
+      if(countries.length===0){
+        return null
+      }
     return (
-
       <div className="container-fluid">
         <ScrollUpButton AnimationDuration={1000}
           style={{
@@ -136,18 +157,15 @@ class HomePage extends Component {
             boxShadow: '#ffffff6b 0px 1px 10px'
           }} />
         <Header
-          language={this.state.language}
-          languageLine={languageLine}
-          searchline={searchLine}
-          placeHolder={searchPlaceHolder}
-          discription={description}
-          setLng={this.setLng}
-          showSearch={this.state.showSearch}
-          search={this.state.search}
-          input={this.state.input}
-          changeHandler={this.changeHandler}
-          onClickSearchHandler={this.onClickSearchHandler}
-          handleKeyPress={this.handleKeyPress} />
+            lang={lang}
+            props={countries}
+          setLng={setLng}
+          showSearch={showSearch}
+          search={search}
+          input={input}
+          changeHandler={changeHandler}
+          onClickSearchHandler={onClickSearchHandler}
+          handleKeyPress={handleKeyPress} />
         <Particles
           className="particles-js"
           params={{
@@ -207,25 +225,10 @@ class HomePage extends Component {
           }}>
         </Particles>
         <div className="cards-container">
-          {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription, wind }) => {
-              return (
-                <Card
-                  headerDescription={headerDescription}
-                  lang={this.state.language}
-                  key={id}
-                  id={id}
-                  name={name}
-                  capital={capital}
-                  imageUrl={imageUrl}
-                  wind={wind}
-                />
-              );
-            })}
+          {countryCardMap(countries)}
         </div>
       </div>
     );
-  }
 }
 
 export default HomePage;

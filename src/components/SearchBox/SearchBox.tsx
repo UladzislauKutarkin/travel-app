@@ -23,8 +23,8 @@ const SearchBox = (props) => {
 
     return (   
         <div>
-        <label  onClick={onClickSearchHandler} className='header-search-title' htmlFor='search'>{props.searchline[0]}</label>
-        <input   autoFocus={true} autoComplete="off" type = "search" id='search' placeholder={props.placeHolder[0]} value = {input} onChange = {changeHandler} onKeyDown = {handleKeyPress}></input>
+        <label  onClick={onClickSearchHandler} className='header-search-title' htmlFor='search'>{props.props[0].search}</label>
+        <input   autoFocus={true} autoComplete="off" type = "search" id='search' placeholder={props.props[0].searchPlaceholder} value = {input} onChange = {changeHandler} onKeyDown = {handleKeyPress}></input>
     </div>
     )
 }
