@@ -27,10 +27,10 @@ interface Country {
   searchPlaceholder: string;
   headerDescription: string;
   language: string;
-  feelsLike:string;
-  wind:string;
-  humidity:string;
-  localTime:string;
+  feelsLike: string;
+  wind: string;
+  humidity: string;
+  localTime: string;
   coordin: [];
 }
 
@@ -38,6 +38,8 @@ class HomePage extends Component {
   state = {
     countries: [],
     search: '',
+
+    input: '',
     showSearch: true,
     language: 'en'
   }
@@ -46,43 +48,58 @@ class HomePage extends Component {
   componentDidMount() {
     this.setState({ countries: countries });
     this.getCountries();
-  
+
   }
 
-getCountries = () => {
-  axios
+  getCountries = () => {
+    axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${this.state.language}`)
       .then(({ data }) => this.setState({ countries: data }));
- 
-}
+
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.language !== this.state.language) {
       this.getCountries();
     }
+
+    if (prevState.input !== this.state.input) {
+      if (this.state.input === '') {
+        this.setState({ search: '' });
+      }
+    }
   }
 
-  setLng = (event) => {
-    
+  setLng = (e) => {
+
     this.setState({
-      language: event.target.value
+      language: e.target.value
     })
   };
 
 
 
-  setFilteredCards = () => {};
-
-
   changeHandler = (e) => {
-    this.setState({ search: e.target.value });
+
+    this.setState({ input: e.target.value });
+  };
+
+
+  handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      this.setState({ search: this.state.input });
+    }
+  };
+
+  onClickSearchHandler = (e) => {
+    this.setState({ search: this.state.input });
   };
 
   render() {
-    const { countries, search } = this.state;
-    const description = countries.map(({headerDescription})=> headerDescription)
-    const searchLine = countries.map(({search})=> search)
-    const searchPlaceHolder = countries.map(({searchPlaceholder})=> searchPlaceholder)
+    const { countries, search, input } = this.state;
+    const description = countries.map(({ headerDescription }) => headerDescription)
+    const searchLine = countries.map(({ search }) => search)
+    const searchPlaceHolder = countries.map(({ searchPlaceholder }) => searchPlaceholder)
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
@@ -92,23 +109,27 @@ getCountries = () => {
     return (
 
       <div className="container-fluid">
-        <ScrollUpButton AnimationDuration={1000} 
-        style={{ 
-        backgroundColor: '##c0c0c000',
-        border: '0px solid black',
-        right: '16px',
-        zIndex: '1',
-        boxShadow: '#ffffff6b 0px 1px 10px'}} />
+        <ScrollUpButton AnimationDuration={1000}
+          style={{
+            backgroundColor: '##c0c0c000',
+            border: '0px solid black',
+            right: '16px',
+            zIndex: '1',
+            boxShadow: '#ffffff6b 0px 1px 10px'
+          }} />
         <Header
 
-            searchline={searchLine}
-            placeHolder={searchPlaceHolder}
-            discription={description}
-            setLng={this.setLng}
-            showSearch={this.state.showSearch}
-            search={this.state.search}
-            changeHandler={this.changeHandler} />
-  <Particles
+          searchline={searchLine}
+          placeHolder={searchPlaceHolder}
+          discription={description}
+          setLng={this.setLng}
+          showSearch={this.state.showSearch}
+          search={this.state.search}
+          input={this.state.input}
+          changeHandler={this.changeHandler}
+          onClickSearchHandler={this.onClickSearchHandler}
+          handleKeyPress={this.handleKeyPress} />
+        <Particles
           className="particles-js"
           params={{
             particles: {
@@ -120,9 +141,10 @@ getCountries = () => {
               shape: {
                 type: "circle",
                 stroke: { width: 0, color: "#201c1c" },
-                polygon: { nb_sides: 6, 
-                 },
-                
+                polygon: {
+                  nb_sides: 6,
+                },
+
               },
               opacity: {
                 value: 0.5,
@@ -144,7 +166,7 @@ getCountries = () => {
               move: {
                 enable: true,
                 speed: 2,
- 
+
               },
             },
             interactivity: {
@@ -164,10 +186,10 @@ getCountries = () => {
             },
             retina_detect: true,
           }}>
-          </Particles>
+        </Particles>
         <div className="cards-container">
           {countries.length &&
-            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription, wind}) => {
+            filtered_countries.map(({ id, name, capital, imageUrl, headerDescription, wind }) => {
               return (
                 <Card
                   headerDescription={headerDescription}

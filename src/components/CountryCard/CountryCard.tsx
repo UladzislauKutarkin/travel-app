@@ -58,7 +58,7 @@ function ScrollToTopOnMount() {
 const CountryCard  = ({ match }: Props): React.ReactElement => {
 
 
-const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
+const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', currenc:'', ISOCode: '',currency: '',
         name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState(''|| 'en')
 
@@ -80,7 +80,7 @@ const [lang, setLang]= useState(''|| 'en')
   console.log('country ',country);
   
 
-  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, currenc,  ISOCode, currency, name, capitalLocation, headerDescription } = country;
 
 
 
@@ -107,7 +107,7 @@ const [lang, setLang]= useState(''|| 'en')
           </div>
         </div>
 
-        <WidgetsBox localTime = {localTime} humidity = {humidity} feelsLike ={feelsLike} days ={days} months = {months} wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
+        <WidgetsBox  currenc = {currenc} localTime = {localTime} humidity = {humidity} feelsLike ={feelsLike} days ={days} months = {months} wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
       <ImageGallery items={country.slid}/>
