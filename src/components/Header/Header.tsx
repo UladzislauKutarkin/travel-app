@@ -58,6 +58,7 @@ export default function Header (props) {
                 <Link to='/' target="_top">
                 <img className='header-logo' src={logo} alt="logo"/>
                 </Link>
+                
                 <div>
                     <span className=''>{showLanguage()}</span>
                     <select  value={setLangValue()} onChange = {translation}  className='option-value'>

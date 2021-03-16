@@ -1,20 +1,30 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import './TimeWidget.scss';
 
-interface TimeType {
-    ISOCode: string,
-    days: [],
-    months: [],
-    localTime: string
-    
-}
 
-class TimeWidget extends Component<TimeType> {
+const TimeWidget = (props: any) => {
 
-    //days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    // days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    // months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
-    time_offsets = {
+
+    const [cur_day, setCurDay]: any = useState({
+        day: 0,
+        date: 0,
+        month: 0,
+        year: 0,
+    });
+
+
+    const [time, setTime]: any = useState({
+        hour: 0,
+        min: 0,
+        sec: 0,
+    });
+
+    const [timezone, setTimezone]: any= useState({
+        timezone: 0,
+    });
+
+
+    const time_offsets = {
         US: -5,
         UA: 2,
         AE: 4,
@@ -26,60 +36,28 @@ class TimeWidget extends Component<TimeType> {
         BY: 3
     };
 
-   
 
-    state = {
-        day: {
-            day: 0,
-            date: 0,
-            month: 0,
-            year: 0,
-        },
-
-        time: {
-            hour: 0,
-            min: 0,
-            sec: 0,
-        },
-        
-        timezone:0, 
-    }
-
-    componentDidMount() {
-        this.getDay();
-        this.getTime(this.state.timezone);
-    }
-
-      componentDidUpdate(prevProps) {
-
-        if(prevProps !== this.props) {
-
-         this.setState({timezone: this.time_offsets[this.props.ISOCode]})   
-
-        }
-        setTimeout((tz = this.state.timezone) => (this.getTime(tz)), 1000);
-    }
-
-    addZero = (n) => {
+    const addZero = (n) => {
         return (parseInt(n, 10) < 10 ? '0' : '') + n;
     }
 
-    getTime = (tz) => {
-    
+
+    const getTime = (tz) => {
+
         const now = new Date().getTime();
-        const corr_time = Number(now+(tz*60*60*1000));
-        const today =  new Date(corr_time);
-    
+        const corr_time = Number(now + (tz * 60 * 60 * 1000));
+        const today = new Date(corr_time);
+
         const _time = {
             hour: today.getUTCHours(),
             min: today.getMinutes(),
             sec: today.getSeconds(),
         }
 
-        this.setState({ time: _time });
+        setTime(_time);
     }
 
-    getDay = () => {
+    const getDay = () => {
         const today = new Date();
         const _day = {
             day: today.getDay(),
@@ -88,30 +66,39 @@ class TimeWidget extends Component<TimeType> {
             year: today.getFullYear(),
         }
 
-        this.setState({ day: _day });
+        setCurDay(_day);
     }
 
-    render() {
-      
-        const { hour, min, sec } = this.state.time;
-        const { day, date, month, year } = this.state.day;
-        const {days, months,   localTime} = this.props;
-       
+const setNewTimeZone = () =>{
+    setTimezone(time_offsets[props.ISOCode]);
+}
 
-        return (
-            <div className="date-time ">
-                <div className="date-time-container">
-                    <div className="title">{localTime}</div>
-                    <div className="date-time-inner">
-                        <div className="date">{`${days[day]} ${date} ${months[month]} ${year}`}</div>
-                        <div className="time">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
-                    </div>
+    useEffect(() => {
+       // console.log('useEffect');
+        setNewTimeZone();
+        getDay();
+        setTimeout((tz = timezone) => (getTime(tz)), 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [time]  )
+
+
+    const { hour, min, sec } = time;
+    const { day, date, month, year } = cur_day;
+    const { days, months, localTime } = props;
+
+    return (
+        <div className="date-time ">
+            <div className="date-time-container">
+                <div className="title">{localTime}</div>
+                <div className="date-time-inner">
+                    <div className="date">{`${days[day]} ${date} ${months[month]} ${year}`}</div>
+                    <div className="time">{`${addZero(hour || 0)}:${addZero(min || 0)}:${addZero(sec|| 0)}`}</div>
                 </div>
-
             </div>
-        )
-    }
 
-};
+        </div>
+    )
+
+}
 
 export default TimeWidget;

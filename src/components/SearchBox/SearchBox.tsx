@@ -4,22 +4,10 @@ import './SearchBox.scss'
 
 const SearchBox = (props) => {
 
-//console.log('SearchBox', props );
 
     const   { changeHandler, search, input, onClickSearchHandler, handleKeyPress} = props;
 
-    // const onClickSearchHandler = () => {
-    //     console.log('Search')
-    //   }
-    
-    // const handleKeyPress = (event) => {
-    //     if (event.key === "Enter") {
-    //         console.log('Search')
-    //     }
-    //   };
-      
-    // useEvent("keydown", handleKeyPress);
-      
+  
 
     return (   
         <div>
