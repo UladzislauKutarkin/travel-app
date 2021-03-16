@@ -1,0 +1,38 @@
+.currency {
+  width: 100%;
+  color: white;
+  margin: 1rem;
+}
+.currency-container {
+  margin: auto;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid white;
+}
+
+.currency-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 1rem;
+}
+
+.flag {
+  width: 32px;
+  height: 20px;
+  background-position: center;
+  background-size: cover;   
+  
+}
+
+.currency-item-box {
+    width: 3rem;
+     text-align: right;
+     font-family: Source Sans Pro;
+     font-style: normal;
+     font-weight: normal;
+}

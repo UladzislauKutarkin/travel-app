@@ -1,0 +1,20 @@
+.App {
+
+   // background-color: #e5e5e5;
+   // background-color: black;
+   background-color: #1d1d1d;
+}
+
+.brd {
+    border:1px solid blue;
+}
+
+::-webkit-scrollbar { /* chrome based */
+    width: 0px;  /* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
+
+// .particles {
+//     width: 100%;
+//     height: 150vh;
+// }
