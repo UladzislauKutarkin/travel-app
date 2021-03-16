@@ -1,8 +1,8 @@
 import "./CountryCard.scss";
 import "react-responsive-carousel/lib/styles/carousel.css";
-import ReactWebMediaPlayer from "react-web-media-player";
+
 import WidgetsBox from "../WidgetsBox";
-import titleVideo from "../../assets/imgs/title-video.png";
+
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
@@ -15,25 +15,26 @@ import ReactPlayer from 'react-player'
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";;
 
 
-interface Country {
-  id: string,
-  capital: string,
-  description: string,
-  name: string,
-  capitalLocation: {
-    coordinates: Array<string>,
-    type: string
-  },
-  imageUrl: string,
-  ['videoUrl ']: string,
-  currency: string,
-  ISOCode: string,
-  places: [],
-  headerDescription:string;
-  wind:string;
-  slid:[];
-  coordin:[]
-  }
+// interface Country {
+//   id: string,
+//   capital: string,
+//   description: string,
+//   name: string,
+//   capitalLocation: {
+//     coordinates: Array<string>,
+//     type: string
+//   },
+//   imageUrl: string,
+//   ['videoUrl ']: string,
+//   currency: string,
+//   ISOCode: string,
+//   places: [],
+//   headerDescription:string;
+//   wind:string;
+//   slid:[];
+//   coordin:[],
+
+//   }
 
 
 interface Props {
@@ -54,18 +55,17 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-const CountryCard = ({ match }: Props): React.ReactElement => {
+const CountryCard  = ({ match }: Props): React.ReactElement => {
 
 
-const[country,setCountry] = useState({headerDescription:'', coordin:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
+const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
         name: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState(''|| 'en')
 
 
   const setFr = (event) => {
     setLang(event.target.value)
-    console.log(event.target.value)
-    console.log(lang)
+   
   }
 
   const fetchCountries = async () => {
@@ -75,9 +75,12 @@ const [lang, setLang]= useState(''|| 'en')
 
   useEffect( () => {
   fetchCountries();
-  },[lang , country.coordin])
+  },[lang , country.coordin]);
 
-  const {wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription } = country;
+  console.log('country ',country);
+  
+
+  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription } = country;
 
 
 
@@ -104,7 +107,7 @@ const [lang, setLang]= useState(''|| 'en')
           </div>
         </div>
 
-        <WidgetsBox wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
+        <WidgetsBox localTime = {localTime} humidity = {humidity} feelsLike ={feelsLike} days ={days} months = {months} wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
       <ImageGallery items={country.slid}/>

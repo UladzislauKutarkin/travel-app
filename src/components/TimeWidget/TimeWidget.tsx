@@ -2,15 +2,18 @@ import { Component } from "react";
 import './TimeWidget.scss';
 
 interface TimeType {
-    ISOCode: string, 
+    ISOCode: string,
+    days: [],
+    months: [],
+    localTime: string
     
 }
 
 class TimeWidget extends Component<TimeType> {
 
     //days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
+    // days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    // months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'September', 'October', 'November', 'December'];
     time_offsets = {
         US: -5,
         UA: 2,
@@ -23,6 +26,7 @@ class TimeWidget extends Component<TimeType> {
         BY: 3
     };
 
+   
 
     state = {
         day: {
@@ -91,13 +95,15 @@ class TimeWidget extends Component<TimeType> {
       
         const { hour, min, sec } = this.state.time;
         const { day, date, month, year } = this.state.day;
+        const {days, months,   localTime} = this.props;
+       
 
         return (
             <div className="date-time ">
                 <div className="date-time-container">
-                    <div className="title">Local Time</div>
+                    <div className="title">{localTime}</div>
                     <div className="date-time-inner">
-                        <div className="date">{`${this.days[day]} ${date} ${this.months[month]} ${year}`}</div>
+                        <div className="date">{`${days[day]} ${date} ${months[month]} ${year}`}</div>
                         <div className="time">{`${this.addZero(hour)}:${this.addZero(min)}:${this.addZero(sec)}`}</div>
                     </div>
                 </div>

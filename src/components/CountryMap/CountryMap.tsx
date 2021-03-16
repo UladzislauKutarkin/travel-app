@@ -28,13 +28,12 @@ class CountryMap extends Component<CountryMapType> {
 
 
     componentDidMount() {
-        console.log('componentDidMount');
-        // setMap(this.state.coordinates);
+      
     }
 
 
     getCoordinates = (coordinatesBD) => {
-        console.log('coordinatesBD', coordinatesBD);
+       // console.log('coordinatesBD', coordinatesBD);
          const _arr = coordinatesBD.split(',');
          const nextArr: any[] = [];
         for (let i = 0; i < _arr.length; i+=2) {
@@ -48,7 +47,7 @@ class CountryMap extends Component<CountryMapType> {
 
     componentDidUpdate(prevProps) {
         if (prevProps !== this.props) {
-            console.log('componentDidUpdate', this.props.coordinates);
+          //  console.log('componentDidUpdate', this.props.coordinates);
            
             setMap(this.props.coordinates, this.getCoordinates(this.props.coordin));
             this.setState({ coordinates: this.props.coordinates })
