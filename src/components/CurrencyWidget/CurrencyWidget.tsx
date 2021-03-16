@@ -6,7 +6,8 @@ import './CurrencyWidget.scss';
 interface CurrencyType {
     ISOCode: string, 
     currency: string, 
-    name: string
+    name: string,
+    currenc: string
   
 }
 class CurrencyWidget extends Component<CurrencyType> {
@@ -102,12 +103,13 @@ class CurrencyWidget extends Component<CurrencyType> {
     render() {
        
         const { currencies } = this.state;
+    const  {currenc} = this.props;
         return (
 
             <div className="currency">
               
                 <div className="currency-container">
-                    <div className="title">Currency</div>
+                    <div className="title">{currenc}</div>
 
                     {
                     currencies.map(currency => {

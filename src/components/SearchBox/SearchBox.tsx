@@ -4,25 +4,27 @@ import './SearchBox.scss'
 
 const SearchBox = (props) => {
 
-    const   { changeHandler,search } = props;
+//console.log('SearchBox', props );
 
-    const onClickSearchHandler = () => {
-        console.log('Search')
-      }
+    const   { changeHandler, search, input, onClickSearchHandler, handleKeyPress} = props;
+
+    // const onClickSearchHandler = () => {
+    //     console.log('Search')
+    //   }
     
-    const handleKeyPress = (event) => {
-        if (event.key === "Enter") {
-            console.log('Search')
-        }
-      };
+    // const handleKeyPress = (event) => {
+    //     if (event.key === "Enter") {
+    //         console.log('Search')
+    //     }
+    //   };
       
-    useEvent("keydown", handleKeyPress);
+    // useEvent("keydown", handleKeyPress);
       
 
     return (   
         <div>
-        <label onClick={onClickSearchHandler} className='header-search-title' htmlFor='search'>{props.searchline[0]}</label>
-        <input  autoFocus={true} autoComplete="off" type = "search" id='search' placeholder={props.placeHolder[0]} value = {search} onChange = {changeHandler}></input>
+        <label  onClick={onClickSearchHandler} className='header-search-title' htmlFor='search'>{props.searchline[0]}</label>
+        <input   autoFocus={true} autoComplete="off" type = "search" id='search' placeholder={props.placeHolder[0]} value = {input} onChange = {changeHandler} onKeyDown = {handleKeyPress}></input>
     </div>
     )
 }
