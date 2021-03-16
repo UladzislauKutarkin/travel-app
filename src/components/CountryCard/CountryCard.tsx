@@ -14,26 +14,26 @@ import ReactPlayer from 'react-player'
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";;
 
 
-// interface Country {
-//   id: string,
-//   capital: string,
-//   description: string,
-//   name: string,
-//   capitalLocation: {
-//     coordinates: Array<string>,
-//     type: string
-//   },
-//   imageUrl: string,
-//   ['videoUrl ']: string,
-//   currency: string,
-//   ISOCode: string,
-//   places: [],
-//   headerDescription:string;
-//   wind:string;
-//   slid:[];
-//   coordin:[],
-
-//   }
+interface Country {
+  id: string,
+  capital: string,
+  description: string,
+  name: string,
+  capitalLocation: {
+    coordinates: Array<string>,
+    type: string
+  },
+  imageUrl: string,
+  ['videoUrl ']: string,
+  currency: string,
+  ISOCode: string,
+  places: [],
+  headerDescription:string;
+  wind:string;
+  slid:[];
+  coordin:[],
+  currenc: string
+  }
 
 
 interface Props {
@@ -58,7 +58,7 @@ const CountryCard  = ({ match }: Props): React.ReactElement => {
 
 
 const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
-        name: '', language: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+        name: '',currenc:'', language: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
 
@@ -88,7 +88,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
   console.log('country ',country);
   
 
-  const {localTime, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription, language } = country;
+  const {localTime, currenc, humidity, feelsLike, days, months, wind, capital, coordin, ISOCode, currency, name, capitalLocation, headerDescription, language } = country;
 
 
 
