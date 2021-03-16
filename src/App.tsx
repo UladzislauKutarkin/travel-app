@@ -4,6 +4,7 @@ import {Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import CountryPage from './pages/CountryPage';
 import Footer from "./components/Footer/footer";
+import SignPage from './pages/SignPage';
 
 
 
@@ -13,7 +14,9 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path='/sign' component = {SignPage} />
         <Route exact path='/:id' component = {CountryPage} />
+      
       </Switch>
       <Footer />
     </div>

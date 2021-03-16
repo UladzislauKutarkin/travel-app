@@ -4,7 +4,7 @@ import './SearchBox.scss'
 
 const SearchBox = (props) => {
 
-    const   {placeholder, changeHandler,search } = props;
+    const   { changeHandler,search } = props;
 
     const onClickSearchHandler = () => {
         console.log('Search')

@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
-const setMap = (coordinates,getCoordinates) => {
+const setMap = (coordinates : any, getCoordinates: any) => {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoieWE2IiwiYSI6ImNrbTh4eW1xcDFjZDEydm10NDFsMXlrOTQifQ.Op0dWC0nWMonljXC5GamkQ';
     const map = new mapboxgl.Map({
@@ -11,7 +11,7 @@ const setMap = (coordinates,getCoordinates) => {
         pitch: 45,
         // bearing: 17.6,
     });
-    var marker = new mapboxgl.Marker()
+    new mapboxgl.Marker()
     .setLngLat(coordinates)
     .addTo(map);
     map.addControl(new mapboxgl.FullscreenControl())
