@@ -1,8 +1,7 @@
 import Card from "../../components/Card";
 import "./HomePage.scss";
-import countries from "../../data/counties";
 import Header from "../../components/Header/Header";
-import React, { Component, useEffect, useCallback, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
@@ -40,47 +39,22 @@ const HomePage= ()=> {
       [showSearch, setShowSearch]= useState(true),
       [lang, setLang] = useState<string|null>(localStorage.getItem('languag'));
       const [isDataFetched, setDataFetched] = useState(false)
-/*  state = {
-    countries: [],
-    search: '',
 
-    input: '',
-    showSearch: true,
-    language: ''
-  }*/
 
 useEffect(()=>{
-    console.log('privet')
     getLanguages();
     getCountries();
     console.log(countries[0])
 }, [isDataFetched, lang])
-/*  componentDidMount() {
-    this.setLanguage()
-    this.getCountries();
-    this.setState({ countries: countries });
 
 
-  }*/
+
   const getCountries = () => {
     axios
       .get<Country[]>(`http://localhost:3000/countries?lang=${lang}`)
       .then(({ data }) => setCountries(data)).then(()=> setDataFetched(true))
   }
 
-/*  componentDidUpdate(prevProps, prevState) {
-    if (prevState.language !== this.state.language) {
-      this.getCountries();
-      console.log(this.state.language)
-      console.log(countries)
-    }
-
-    if (prevState.input !== this.state.input) {
-      if (this.state.input === '') {
-        this.setState({ search: '' });
-      }
-    }
-  }*/
 
 
   const getLanguages = ()=>{
@@ -97,39 +71,30 @@ useEffect(()=>{
   };
 
 
-
-
   const changeHandler = (e) => {
     setInput(e.target.value)
-/*    this.setState({ input: e.target.value });*/
   };
 
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       setSearch(input)
-/*      this.setState({ search: this.state.input });*/
     }
   };
 
   const onClickSearchHandler = (e) => {
     setSearch(input)
-/*    this.setState({ search: this.state.input });*/
   };
 
 
-/*    const { countries, search, input } = countries;*/
-/*    const description = countries.map(({ headerDescription }) => headerDescription)
-    const searchLine = countries.map(({ search }) => search)
-    const searchPlaceHolder = countries.map(({ searchPlaceholder }) => searchPlaceholder)
-    const languageLine = countries.map(({language})=> language)
+
     const filtered_countries = countries.filter((c) => {
       return (
         String(c["name"]).toLowerCase().includes(search.toLowerCase()) ||
         String(c["capital"]).toLowerCase().includes(search.toLowerCase())
-      );*/
+      )});
     const countryCardMap =(countries)=> {
-      return countries.length && countries.map(({ id, wind,capital,
+      return countries.length && filtered_countries.map(({ id, wind,capital,
               name, language,imageUrl}) => {
         return (
             <Card
