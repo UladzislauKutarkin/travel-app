@@ -41,7 +41,6 @@ const [weather, setWeather] = useState({
     };
 
     useEffect(() => {
-  
          fetchWeather(props.capital || "Minsk");
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.capital]);
