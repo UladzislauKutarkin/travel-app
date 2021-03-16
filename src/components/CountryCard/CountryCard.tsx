@@ -63,6 +63,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
 
 
+
   const setFr = (event) => {
     localStorage.setItem('languag', event.target.value)
     setLang(localStorage.getItem('languag'))
@@ -93,6 +94,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
 
 
+
   return (
     <div className="country-card">
       <ScrollToTopOnMount />
@@ -114,7 +116,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
           </div>
         </div>
 
-        <WidgetsBox localTime = {localTime} humidity = {humidity} feelsLike ={feelsLike} days ={days} months = {months} wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
+        <WidgetsBox  currenc = {currenc} localTime = {localTime} humidity = {humidity} feelsLike ={feelsLike} days ={days} months = {months} wind={wind} capital = {capital} ISOCode={ISOCode}  currency ={currency} name = {name}/>
       </div>
 
       <ImageGallery items={country.slid}/>

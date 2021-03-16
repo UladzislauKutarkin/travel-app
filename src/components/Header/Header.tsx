@@ -8,8 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 export default function Header (props) {
 
-  //  console.log('Header props', props);
-    
+   
     function renderSearchBox() {
         if (props.showSearch){
             return <SearchBox placeholder='Search country' {...props}/>
@@ -45,8 +44,7 @@ export default function Header (props) {
             return null
         }
     }
-//    console.log(props.headerDescription)
-//   const   {changeHandler,search } = props;
+
     return (
         <BrowserRouter>
         <header className='header-wrapper'>
