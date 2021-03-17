@@ -2,8 +2,8 @@ import videoMountain from "../../assets/video/Mountain.mp4";
 import "../Header/Header.scss";
 import logo from "../../assets/imgs/logo.png.png";
 import SearchBox from "../SearchBox";
-import { Link } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 export default function Header(props) {
   const renderSearchBox = () => {
@@ -55,7 +55,7 @@ export default function Header(props) {
     }
   };
   return (
-    <BrowserRouter>
+    <HashRouter>
       <header className="header-wrapper">
         <video
           className={headerVideoScale()}
@@ -68,7 +68,7 @@ export default function Header(props) {
         </video>
         <div className={headerWrapper()}>
           {renderSearchBox()}
-          <Link to="/" target="_top">
+          <Link to='/'>
             <img className="header-logo" src={logo} alt="logo" />
           </Link>
 
@@ -95,6 +95,6 @@ export default function Header(props) {
           {renderDescription()}
         </div>
       </header>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

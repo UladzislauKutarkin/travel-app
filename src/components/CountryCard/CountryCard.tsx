@@ -55,7 +55,7 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
     capitalLocation: { coordinates: [] },
   });
   const [lang, setLang] = useState<string | null>(
-    localStorage.getItem("languag")
+    ''
   );
 
   const setFr = (event) => {
