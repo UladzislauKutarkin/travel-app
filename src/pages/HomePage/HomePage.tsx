@@ -37,14 +37,13 @@ const HomePage= ()=> {
       [search, setSearch]= useState(''),
       [input, setInput] = useState(''),
       [showSearch, setShowSearch]= useState(true),
-      [lang, setLang] = useState<string|null>(localStorage.getItem('languag'));
+      [lang, setLang] = useState<string|null>('');
       const [isDataFetched, setDataFetched] = useState(false)
 
 
 useEffect(()=>{
     getLanguages();
     getCountries();
-    console.log(countries[0])
 }, [isDataFetched, lang])
 
 
