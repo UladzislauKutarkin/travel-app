@@ -43,11 +43,13 @@ const HomePage = () => {
   useEffect(() => {
     getCountries();
     getLanguages();
+  }, [isDataFetched, lang]);
+
+  useEffect(()=> {
     if (input === "") {
       setSearch("");
     }
-  }, [isDataFetched, lang, input]);
-
+  },[ input])
   const getCountries = () => {
     axios
       .get<Country[]>(`https://travel-app-server-epam.herokuapp.com/countries?lang=${lang}`)

@@ -55,7 +55,7 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
     capitalLocation: { coordinates: [] },
   });
   const [lang, setLang] = useState<string | null>(
-    ''
+      localStorage.getItem("languag")|| ''
   );
 
   const setFr = (event) => {
@@ -73,6 +73,9 @@ const CountryCard = ({ match }: Props): React.ReactElement => {
     const localLanguage = localStorage.getItem("language");
     if (localLanguage === "") {
       localStorage.setItem("language", "en");
+      setLang(localStorage.getItem("language"))
+    } else {
+      setLang(localStorage.getItem("language"))
     }
   };
   useEffect(() => {

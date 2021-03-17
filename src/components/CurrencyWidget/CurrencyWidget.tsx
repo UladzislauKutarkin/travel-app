@@ -69,10 +69,7 @@ const CurrencyWidget = (props) => {
 
   useEffect(() => {
     const { ISOCode, currency } = props;
-
-    // --------------- UNCOMMENT TO GET WEATHER--------------------------
-
-    // fetchCurrencies(ISOCode, currency)
+   fetchCurrencies(ISOCode, currency)
   }, [props]);
 
   const { currenc } = props;
