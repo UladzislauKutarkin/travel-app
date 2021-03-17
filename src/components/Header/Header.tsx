@@ -17,6 +17,13 @@ export default function Header (props) {
             return <SearchBox placeholder='Search country' {...props}/>
         }
     }
+    const headerVideoScale= ()=>{
+        if (props.showSearch){
+            return 'header-video'
+        } else {
+            return 'cardPageVideo'
+        }
+    }
     function showLanguage() {
         if (props.showSearch){
            return  props.props[0].language
@@ -50,7 +57,7 @@ export default function Header (props) {
     return (
         <BrowserRouter>
         <header className='header-wrapper'>
-            <video className='header-video' autoPlay loop muted preload='true'>
+            <video className={headerVideoScale()} autoPlay loop muted preload='true'>
                 <source src={videoMountain}/>
             </video>
             <div className='header-main-section-wrapper'>
@@ -59,8 +66,8 @@ export default function Header (props) {
                 <img className='header-logo' src={logo} alt="logo"/>
                 </Link>
                 
-                <div>
-                    <span className=''>{showLanguage()}</span>
+                <div className='select-field'>
+                    <span className='language_name'>{showLanguage()}</span>
                     <select  value={setLangValue()} onChange = {translation}  className='option-value'>
                         <option className='option-value' value='en'>En</option>
                         <option className='option-value' value='ru'>Ru</option>

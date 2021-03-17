@@ -2,3 +2,8 @@
    flex-grow: 3;
    width: 30%;
 }
+@media screen and ( max-width: 767px) and (min-width: 300px){
+   .widget_box{
+      width: auto;
+   }
+}

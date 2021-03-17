@@ -1,8 +1,6 @@
 import "./CountryCard.scss";
 import "react-responsive-carousel/lib/styles/carousel.css";
-
 import WidgetsBox from "../WidgetsBox";
-
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom';
@@ -115,7 +113,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
       <div className='country-wrapper--video-map'>
         <div className="country-video">
-          <ReactPlayer controls={true} url={country["videoUrl "]} />
+          <ReactPlayer  controls={true} url={country["videoUrl "]} />
         </div>
 
         

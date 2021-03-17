@@ -48,6 +48,7 @@ const HomePage = () => {
     }
   }, [isDataFetched, lang, input]);
 
+
 console.log(countries)
 
   const getCountries = () => {
