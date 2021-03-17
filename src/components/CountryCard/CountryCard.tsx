@@ -1,5 +1,4 @@
 import "./CountryCard.scss";
-import "react-responsive-carousel/lib/styles/carousel.css";
 import WidgetsBox from "../WidgetsBox";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
