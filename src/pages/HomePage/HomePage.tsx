@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Particles from "react-particles-js";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import Footer from "../../components/Footer/footer";
 
 interface Country {
   id: string;
@@ -53,10 +54,10 @@ console.log(countries)
 
   const getCountries = () => {
     axios
-      .get<Country[]>(`http://localhost:3000/countries?lang=${lang}`)
-      .then(({ data }) => {setCountries(data) ; console.log(data,'data')})
-      .then(() =>  setDataFetched(true));
-  };
+      .get<Country[]>(`https://travel-app-server-epam.herokuapp.com/countries?lang=${lang}`)
+      .then(({ data }) => setCountries(data)).then(()=> setDataFetched(true))
+  }
+
 
   const getLanguages = () => {
     if (localStorage.getItem("languag") === "") {
@@ -194,6 +195,7 @@ console.log(countries)
         }}
       ></Particles>
       <div className="cards-container">{countryCardMap(countries)}</div>
+          <Footer />
     </div>
   );
 };

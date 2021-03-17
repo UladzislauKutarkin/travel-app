@@ -9,7 +9,10 @@ import ImageGallery from 'react-image-gallery';
 import Header from "../Header/Header";
 import CountryMap from "../CountryMap";
 import ReactPlayer from 'react-player'
-import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";;
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import Footer from "../Footer/footer";
+
+;
 
 
 interface Country {
@@ -30,7 +33,8 @@ interface Country {
   wind:string;
   slid:[];
   coordin:[],
-  currenc: string
+  currenc: string,
+    imgCountry: string
   }
 
 
@@ -56,7 +60,7 @@ const CountryCard  = ({ match }: Props): React.ReactElement => {
 
 
 const[country,setCountry] = useState({headerDescription:'', localTime:'', coordin:[], humidity:'', feelsLike:'', days:[], months:[], wind:'',slid:[],slider:[] ,capital:'', ISOCode: '',currency: '',
-        name: '',currenc:'', language: '', description: '',imageUrl: '', videoUrl:'',capitalLocation:{ coordinates:[]}});
+        name: '',currenc:'', language: '', description: '',imageUrl: '',imgCountry:'', videoUrl:'',capitalLocation:{ coordinates:[]}});
 const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
 
@@ -68,7 +72,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
   }
 
   const fetchCountries = async () => {
-    const response = await axios.get(`http://localhost:3000/countries/${match?.params?.id}?lang=${lang}`)
+    const response = await axios.get(`https://travel-app-server-epam.herokuapp.com/countries/${match?.params?.id}?lang=${lang}`)
     setCountry(response.data)
   }
   const  setLanguage= ()=>{
@@ -94,7 +98,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
           <div className="country-photo--wrapper">
             <img
               className="country-photo"
-              src={country.imageUrl}
+              src={country.imgCountry}
               alt="Country"
             />
           </div>
@@ -110,7 +114,7 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
 
       <ImageGallery items={country.slid}/>
 
-
+    <div className='country-wrapper--video-and-map'>
       <div className='country-wrapper--video-map'>
         <div className="country-video">
           <ReactPlayer  controls={true} url={country["videoUrl "]} />
@@ -121,6 +125,8 @@ const [lang, setLang]= useState<string|null>(localStorage.getItem('languag'))
       <div className='map-div'>
       <CountryMap coordin={coordin} coordinates = {capitalLocation.coordinates} />
       </div>
+    </div>
+        <Footer />
     </div>
   );
 

@@ -24,6 +24,13 @@ export default function Header (props) {
             return 'cardPageVideo'
         }
     }
+    const headerWrapper= ()=>{
+        if (props.showSearch){
+            return 'header-main-section-wrapper'
+        } else {
+            return 'header-main-section-wrapper-card'
+        }
+    }
     function showLanguage() {
         if (props.showSearch){
            return  props.props[0].language
@@ -60,7 +67,7 @@ export default function Header (props) {
             <video className={headerVideoScale()} autoPlay loop muted preload='true'>
                 <source src={videoMountain}/>
             </video>
-            <div className='header-main-section-wrapper'>
+            <div className={headerWrapper()}>
                 {renderSearchBox()}
                 <Link to='/' target="_top">
                 <img className='header-logo' src={logo} alt="logo"/>

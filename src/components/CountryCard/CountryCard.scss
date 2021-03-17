@@ -1,12 +1,14 @@
 .country-card{
     width: 100%;
 }
+.country-wrapper--video-and-map{
 
+}
 .country-wrapper--description {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin: 2rem 2rem ;
+    margin: 4rem 2rem 2rem ;
 }
 
 .country-wrapper-desriptions {
@@ -14,14 +16,15 @@
 }
 
 .country-photo--wrapper{
-    width: 506px;
-    height: 280px;
+    margin-top: 20px;
+    width: 800px;
+    height: 600px;
     border: 2px solid;
 }
 
 .country-photo {
-    width: 506px;
-    height: 280px;
+    width: 800px;
+    height: 600px;
 }
 .country-name {
     font-family: Poppins;
@@ -94,6 +97,19 @@ color: #FFFFFF;
 }
 
 @media screen and (max-width : 1024px) and (min-width: 768px){
+    .country-photo--wrapper{
+        margin-top: 20px;
+        width: 510px;
+        height: 350px;
+    }
+
+    .country-photo {
+        width: 510px;
+        height: 350px;
+    }
+    .country-wrapper--description{
+        margin-top: 40px;
+    }
     .country-name {
         font-size: 70px;
         line-height: 92px;
@@ -102,6 +118,7 @@ color: #FFFFFF;
         font-size: 70px;
         line-height: 92px;
     }
+
 }
 @media screen and ( max-width: 767px) and (min-width: 300px){
     .country-capital{
@@ -114,18 +131,18 @@ color: #FFFFFF;
         font-size: 30px;
     }
     .country-photo--wrapper{
-        width: 200px;
-        height: 140px;
+        width: 300px;
+        height: 200px;
         border: 2px solid;
     }
-
     .country-photo {
-        width: 200px;
-        height: 140px;
+        width: 300px;
+        height: 200px;
     }
     .country-wrapper--description {
         display: flex;
         flex-direction: column;
         margin: 0 ;
+        margin-top: 40px;
     }
 }
