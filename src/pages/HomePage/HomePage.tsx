@@ -41,16 +41,12 @@ const HomePage = () => {
   const [isDataFetched, setDataFetched] = useState(false);
 
   useEffect(() => {
-    console.log('useEffect')
     getCountries();
     getLanguages();
     if (input === "") {
       setSearch("");
     }
   }, [isDataFetched, lang, input]);
-
-
-console.log(countries)
 
   const getCountries = () => {
     axios
@@ -125,6 +121,7 @@ console.log(countries)
           right: "16px",
           zIndex: "1",
           boxShadow: "#ffffff6b 0px 1px 10px",
+          outline: 'none'
         }}
       />
       <Header

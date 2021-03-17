@@ -1,148 +1,165 @@
-.country-card{
-    width: 100%;
+.country-card {
+  width: 100%;
 }
-.country-wrapper--video-and-map{
-
+.react-player {
+  width: 950px !important;
+  height: 550px !important;
 }
 .country-wrapper--description {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 4rem 2rem 2rem ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 4rem 2rem 2rem;
 }
 
 .country-wrapper-desriptions {
- flex-grow: 7; 
+  flex-grow: 7;
 }
 
-.country-photo--wrapper{
-    margin-top: 20px;
-    width: 800px;
-    height: 600px;
-    border: 2px solid;
+.country-photo--wrapper {
+  margin-top: 30px;
+  width: 670px;
+  height: 550px;
+  border: 2px solid;
 }
 
 .country-photo {
-    width: 800px;
-    height: 600px;
+  width: 670px;
+  height: 550px;
 }
 .country-name {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 84px;
-    line-height: 102px;
-    letter-spacing: -2px;
-    color: #FFFFFF;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 84px;
+  line-height: 102px;
+  letter-spacing: -2px;
+  color: #ffffff;
 }
 
-.country-capital{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 55px;
-    line-height: 82px;
-    letter-spacing: -2px;
-    color: #FFFFFF;
-}
-  
-.country-description{
-font-family: Source Sans Pro;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 34px;
-letter-spacing: 1px;
-color: #FFFFFF;
+.country-capital {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 55px;
+  line-height: 82px;
+  letter-spacing: -2px;
+  color: #ffffff;
 }
 
+.country-description {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 34px;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
 
 .country-video {
-   display: flex;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .country-descriptions {
-    position: absolute;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 84px;
-    line-height: 102px;
-    letter-spacing: -2px; 
-    color: #FFFFFF;
+  position: absolute;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 84px;
+  line-height: 102px;
+  letter-spacing: -2px;
+  color: #ffffff;
 }
 
-.slider-wrapper{
-    background-size: cover;
+.slider-wrapper {
+  background-size: cover;
 }
 
-.country-wrapper--video-map{
-    display: flex;
-    flex-direction: row;
-    place-content: center;
-    margin-top: 5vh;
+.country-wrapper--video-map {
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  margin-top: 5vh;
 }
 
-.slider{
-    width: 100%;
+.slider {
+  width: 100%;
+  height: 200px;
+}
+
+.map-div {
+  display: flex;
+  place-content: center;
+  margin-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .country-photo--wrapper {
+    margin-top: 20px;
+    width: 510px;
+    height: 350px;
+  }
+
+  .country-photo {
+    width: 510px;
+    height: 350px;
+  }
+  .country-wrapper--description {
+    margin-top: 40px;
+  }
+  .country-name {
+    font-size: 70px;
+    line-height: 92px;
+  }
+  .country-descriptions {
+    font-size: 70px;
+    line-height: 92px;
+  }
+  .react-player {
+    width: 750px !important;
+    height: 450px !important;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 500px) {
+  .react-player {
+    width: 450px !important;
+    height: 350px !important;
+  }
+}
+
+@media screen and (max-width: 500px) and (min-width: 300px) {
+  .react-player {
+    width: 250px !important;
+    height: 150px !important;
+  }
+}
+@media screen and (max-width: 767px) and (min-width: 300px) {
+  .country-capital {
+    font-size: 40px;
+  }
+  .country-name {
+    font-size: 40px;
+  }
+  .country-descriptions {
+    font-size: 30px;
+  }
+  .country-photo--wrapper {
+    width: 300px;
     height: 200px;
-}
-
-.map-div{
+    border: 2px solid;
+  }
+  .country-photo {
+    width: 300px;
+    height: 200px;
+  }
+  .country-wrapper--description {
     display: flex;
-    place-content: center;
-    margin-top: 10vh;
-    padding-bottom: 10vh;
-}
-
-@media screen and (max-width : 1024px) and (min-width: 768px){
-    .country-photo--wrapper{
-        margin-top: 20px;
-        width: 510px;
-        height: 350px;
-    }
-
-    .country-photo {
-        width: 510px;
-        height: 350px;
-    }
-    .country-wrapper--description{
-        margin-top: 40px;
-    }
-    .country-name {
-        font-size: 70px;
-        line-height: 92px;
-    }
-    .country-descriptions {
-        font-size: 70px;
-        line-height: 92px;
-    }
-
-}
-@media screen and ( max-width: 767px) and (min-width: 300px){
-    .country-capital{
-        font-size: 40px;
-    }
-    .country-name {
-        font-size: 40px;
-    }
-    .country-descriptions {
-        font-size: 30px;
-    }
-    .country-photo--wrapper{
-        width: 300px;
-        height: 200px;
-        border: 2px solid;
-    }
-    .country-photo {
-        width: 300px;
-        height: 200px;
-    }
-    .country-wrapper--description {
-        display: flex;
-        flex-direction: column;
-        margin: 0 ;
-        margin-top: 40px;
-    }
+    flex-direction: column;
+    margin: 0;
+    margin-top: 40px;
+  }
 }
