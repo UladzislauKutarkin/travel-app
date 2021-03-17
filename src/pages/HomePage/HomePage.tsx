@@ -44,8 +44,12 @@ const HomePage= ()=> {
 useEffect(()=>{
     getLanguages();
     getCountries();
+if (input === '') {
+  setSearch('');
+}
+
     console.log(countries[0])
-}, [isDataFetched, lang])
+}, [isDataFetched, lang, input])
 
 
 
